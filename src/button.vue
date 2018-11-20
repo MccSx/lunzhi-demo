@@ -1,14 +1,16 @@
 <template>
     <button class="s-button">
         <svg class="icon" aria-hidden="true">
-            <use xlink:href="#i-settings"></use>
+            <use :xlink:href="`#i-${icon}`"></use>
         </svg>
         <slot></slot>
     </button>
 </template>
 
 <script>
-    export default {}
+    export default {
+        props:['icon']
+    }
 </script>
 
 <style lang="scss">

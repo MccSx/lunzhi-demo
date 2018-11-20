@@ -11335,7 +11335,9 @@ exports.default = void 0;
 //
 //
 //
-var _default = {};
+var _default = {
+  props: ['icon']
+};
 exports.default = _default;
         var $41d9a4 = exports.default || module.exports;
       
@@ -11354,7 +11356,7 @@ exports.default = _default;
     { staticClass: "s-button" },
     [
       _c("svg", { staticClass: "icon", attrs: { "aria-hidden": "true" } }, [
-        _c("use", { attrs: { "xlink:href": "#i-settings" } })
+        _c("use", { attrs: { "xlink:href": "#i-" + _vm.icon } })
       ]),
       _vm._v(" "),
       _vm._t("default")
@@ -11436,7 +11438,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56523" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62586" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
