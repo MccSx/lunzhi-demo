@@ -3,7 +3,8 @@
         <!-- <svg v-if="icon" class="icon" aria-hidden="true">
             <use :xlink:href="`#i-${icon}`"></use>
         </svg> -->
-        <s-icon class="i" :icon-name="icon"></s-icon>
+        <s-icon class="i" v-if="icon && !isLoading" :icon-name="icon"></s-icon>
+        <s-icon class="i icon-loading" v-if="isLoading" icon-name="loading"></s-icon>
         <div class="content">
             <slot></slot>
         </div>
@@ -15,6 +16,10 @@
         // props:['icon','iconPosition']
         props: {
             icon: {},
+            isLoading:{
+                type:Boolean,
+                default:false
+            },
             iconPosition: {
                 type: String,
                 default: 'left',
@@ -27,6 +32,10 @@
 </script>
 
 <style lang="scss" scoped>
+@keyframes spin {
+    0%{transform: rotate(0deg);}
+    100%{transform: rotate(360deg);}
+}
 .s-button{
     font-size: var(--font-size);
     height: var(--button-height);
@@ -53,5 +62,6 @@
         > .i{order:2; margin-right: 0; margin-left: 0.3em;}
         > .content{order: 1;}
     }
+    .icon-loading{animation: spin 1s infinite linear;}
 }
 </style>

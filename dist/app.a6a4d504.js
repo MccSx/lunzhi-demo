@@ -11338,10 +11338,15 @@ exports.default = void 0;
 //
 //
 //
+//
 var _default = {
   // props:['icon','iconPosition']
   props: {
     icon: {},
+    isLoading: {
+      type: Boolean,
+      default: false
+    },
     iconPosition: {
       type: String,
       default: 'left',
@@ -11371,7 +11376,16 @@ exports.default = _default;
       class: ((_obj = {}), (_obj["icon-" + _vm.iconPosition] = true), _obj)
     },
     [
-      _c("s-icon", { staticClass: "i", attrs: { "icon-name": _vm.icon } }),
+      _vm.icon && !_vm.isLoading
+        ? _c("s-icon", { staticClass: "i", attrs: { "icon-name": _vm.icon } })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.isLoading
+        ? _c("s-icon", {
+            staticClass: "i icon-loading",
+            attrs: { "icon-name": "loading" }
+          })
+        : _vm._e(),
       _vm._v(" "),
       _c("div", { staticClass: "content" }, [_vm._t("default")], 2)
     ],

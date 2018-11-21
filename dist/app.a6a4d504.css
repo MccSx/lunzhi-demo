@@ -1,4 +1,12 @@
 
+@keyframes spin-data-v-41d9a4 {
+0% {
+    transform: rotate(0deg);
+}
+100% {
+    transform: rotate(360deg);
+}
+}
 .s-button[data-v-41d9a4] {
   font-size: var(--font-size);
   height: var(--button-height);
@@ -34,4 +42,7 @@
 }
 .s-button.icon-right > .content[data-v-41d9a4] {
   order: 1;
+}
+.s-button .icon-loading[data-v-41d9a4] {
+  animation: spin-data-v-41d9a4 1s infinite linear;
 }
