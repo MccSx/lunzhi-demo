@@ -1,4 +1,5 @@
-.s-button {
+
+.s-button[data-v-41d9a4] {
   font-size: var(--font-size);
   height: var(--button-height);
   padding: 0 1em;
@@ -8,28 +9,29 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  vertical-align: middle;
 }
-.s-button:hover {
+.s-button[data-v-41d9a4]:hover {
   border-color: var(--border-color-hover);
 }
-.s-button:active {
+.s-button[data-v-41d9a4]:active {
   background: var(--button-active-bg);
 }
-.s-button:focus {
+.s-button[data-v-41d9a4]:focus {
   outline: none;
 }
-.s-button > .icon {
+.s-button > .i[data-v-41d9a4] {
   order: 1;
   margin-right: 0.3em;
 }
-.s-button > .content {
+.s-button > .content[data-v-41d9a4] {
   order: 2;
 }
-.s-button.icon-right > .icon {
+.s-button.icon-right > .i[data-v-41d9a4] {
   order: 2;
   margin-right: 0;
   margin-left: 0.3em;
 }
-.s-button.icon-right > .content {
+.s-button.icon-right > .content[data-v-41d9a4] {
   order: 1;
 }
