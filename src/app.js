@@ -6,5 +6,8 @@ Vue.component('s-button', Button)
 Vue.component('s-icon', Icon)
 
 new Vue({
-    el:'#app'
+    el:'#app',
+    data:{
+        isLoading:false
+    }
 })

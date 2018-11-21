@@ -1,5 +1,5 @@
 <template>
-    <button class="s-button" :class="{[`icon-${iconPosition}`]:true}">
+    <button class="s-button" :class="{[`icon-${iconPosition}`]:true}" @click="$emit('click')">
         <!-- <svg v-if="icon" class="icon" aria-hidden="true">
             <use :xlink:href="`#i-${icon}`"></use>
         </svg> -->

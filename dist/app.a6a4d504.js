@@ -11373,7 +11373,12 @@ exports.default = _default;
     "button",
     {
       staticClass: "s-button",
-      class: ((_obj = {}), (_obj["icon-" + _vm.iconPosition] = true), _obj)
+      class: ((_obj = {}), (_obj["icon-" + _vm.iconPosition] = true), _obj),
+      on: {
+        click: function($event) {
+          _vm.$emit("click")
+        }
+      }
     },
     [
       _vm.icon && !_vm.isLoading
@@ -11508,7 +11513,10 @@ _vue.default.component('s-button', _button.default);
 _vue.default.component('s-icon', _icon.default);
 
 new _vue.default({
-  el: '#app'
+  el: '#app',
+  data: {
+    isLoading: false
+  }
 });
 },{"vue":"node_modules/vue/dist/vue.common.js","./button":"src/button.vue","./icon":"src/icon.vue"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
