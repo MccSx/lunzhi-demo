@@ -46,3 +46,20 @@
 .s-button .icon-loading[data-v-41d9a4] {
   animation: spin-data-v-41d9a4 1s infinite linear;
 }
+.button-group[data-v-9e04cb] {
+  vertical-align: middle;
+  display: inline-flex;
+}
+.button-group button[data-v-9e04cb]:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.button-group button[data-v-9e04cb]:last-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-left: -1px;
+}
+.button-group button[data-v-9e04cb]:hover {
+  position: relative;
+  z-index: 1;
+}
