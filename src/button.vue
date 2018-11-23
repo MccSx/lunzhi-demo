@@ -1,8 +1,5 @@
 <template>
     <button class="s-button" :class="{[`icon-${iconPosition}`]:true}" @click="$emit('click')">
-        <!-- <svg v-if="icon" class="icon" aria-hidden="true">
-            <use :xlink:href="`#i-${icon}`"></use>
-        </svg> -->
         <s-icon class="i" v-if="icon && !isLoading" :icon-name="icon"></s-icon>
         <s-icon class="i icon-loading" v-if="isLoading" icon-name="loading"></s-icon>
         <div class="content">
