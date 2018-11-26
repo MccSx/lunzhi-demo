@@ -19,31 +19,39 @@ import spies from 'chai-spies'
 chai.use(spies)
 const expect = chai.expect
 //单元测试
-{
-    const Constructor = Vue.extend(Button)
-    let vm = new Constructor({
-        propsData: {
-            icon: 'settings'
-        }
-    })
-    vm.$mount('#test')
-    let useElement = vm.$el.querySelector('use')
-    let href = useElement.getAttribute('xlink:href')
-    expect(href).to.eq('#i-settings')
-    vm.$el.remove()
-    vm.$destroy()
-}
-{
-    const Constructor = Vue.extend(Button)
-    let vm = new Constructor({
-        propsData:{
-            icon:'settings'
-        }
-    })
-    vm.$mount()
-    let spy = chai.spy(function () {})
-    vm.$on('click', spy)
-    let button = vm.$el
-    button.click()
-    expect(spy).to.have.been.called()
+try{
+    {
+        const Constructor = Vue.extend(Button)
+        let vm = new Constructor({
+            propsData: {
+                icon: 'settings'
+            }
+        })
+        vm.$mount('#test')
+        let useElement = vm.$el.querySelector('use')
+        let href = useElement.getAttribute('xlink:href')
+        expect(href).to.eq('#i-settings')
+        vm.$el.remove()
+        vm.$destroy()
+    }
+    {
+        const Constructor = Vue.extend(Button)
+        let vm = new Constructor({
+            propsData:{
+                icon:'settings'
+            }
+        })
+        vm.$mount()
+        let spy = chai.spy(function () {})
+        vm.$on('click', spy)
+        let button = vm.$el
+        button.click()
+        expect(spy).to.have.been.called()
+    }
+} catch(error) {
+    window.errors = error
+} finally {
+    window.errors.forEach(error => {
+        console.error(error.message)
+    });
 }
