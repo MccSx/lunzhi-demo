@@ -44,7 +44,7 @@
 3.引入
   ```javascript
   import {Button, ButtonGroup, Icon} from 'lunzhi'
-  impory 'lunzhi/dist/index.css'
+  import 'lunzhi/dist/index.css'
 
   exprot default {
       name: 'app'
