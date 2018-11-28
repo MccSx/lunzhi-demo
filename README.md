@@ -9,6 +9,12 @@
 
 1.安装
 使用本框架前，请在css中设置box-sizing为border-box
+```
+*{box-sizing: border-box;}
+*::before{box-sizing: border-box;}
+*::after{box-sizing: border-box;}
+```
+IE 8 及以上浏览器支持此框架
 
 ## 文档
 
