@@ -64,7 +64,12 @@
   z-index: 1;
 }
 .wrapper[data-v-efdce1] {
-  display: inline-block;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+}
+.wrapper[data-v-efdce1] :not(:last-child) {
+  margin-right: 0.5em;
 }
 .wrapper > input[data-v-efdce1] {
   width: 128px;
@@ -86,4 +91,10 @@
   border-color: #bbb;
   color: #bbb;
   cursor: not-allowed;
+}
+.wrapper > .icon-error[data-v-efdce1] {
+  fill: #F1453D;
+}
+.wrapper > .error[data-v-efdce1] {
+  color: #F1453D;
 }

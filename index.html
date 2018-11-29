@@ -13,6 +13,7 @@
         .icon{width: 1em; height: 1em; vertical-align: -0.15em; fill: currentColor; overflow: hidden;}
         #app{padding-left: 20px;}
         .box{margin-top: 20px;}
+        .hei10{height: 10px;}
     </style>
 </head>
 <body>
@@ -21,6 +22,8 @@
             <s-input value="张三"></s-input>
             <s-input value="张三" :disabled="true"></s-input>
             <s-input value="张三" :readonly="true"></s-input>
+            <div class="hei10"></div>
+            <s-input value="张" error-msg="姓名不能少于两个字"></s-input>
         </div>
         <div class="box">
             <s-button>按钮</s-button>
