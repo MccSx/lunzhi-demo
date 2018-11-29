@@ -12,6 +12,7 @@ Vue.component('x-input', Input)
 new Vue({
     el:'#app',
     data:{
-        isLoading:false
+        isLoading:false,
+        mes:'1'
     }
 })

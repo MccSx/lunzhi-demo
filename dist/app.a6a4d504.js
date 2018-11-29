@@ -11717,16 +11717,16 @@ exports.default = _default;
         domProps: { value: _vm.value },
         on: {
           change: function($event) {
-            _vm.$emit("change", $event)
+            _vm.$emit("change", $event.target.value)
           },
           input: function($event) {
-            _vm.$emit("input", $event)
+            _vm.$emit("input", $event.target.value)
           },
           focus: function($event) {
-            _vm.$emit("focus", $event)
+            _vm.$emit("focus", $event.target.value)
           },
           blur: function($event) {
-            _vm.$emit("blur", $event)
+            _vm.$emit("blur", $event.target.value)
           }
         }
       }),
@@ -11804,7 +11804,8 @@ _vue.default.component('x-input', _input.default);
 new _vue.default({
   el: '#app',
   data: {
-    isLoading: false
+    isLoading: false,
+    mes: '1'
   }
 });
 },{"vue":"node_modules/vue/dist/vue.common.js","./button":"src/button.vue","./icon":"src/icon.vue","./button-group":"src/button-group.vue","./input":"src/input.vue"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
