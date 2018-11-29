@@ -11668,6 +11668,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
 var _default = {
   name: 'x_input',
   props: {
@@ -11683,8 +11688,7 @@ var _default = {
       default: false
     },
     errorMsg: {
-      type: String,
-      default: ''
+      type: String
     }
   },
   components: {
@@ -11710,7 +11714,21 @@ exports.default = _default;
     [
       _c("input", {
         attrs: { type: "text", disabled: _vm.disabled, readonly: _vm.readonly },
-        domProps: { value: _vm.value }
+        domProps: { value: _vm.value },
+        on: {
+          change: function($event) {
+            _vm.$emit("change", $event)
+          },
+          input: function($event) {
+            _vm.$emit("input", $event)
+          },
+          focus: function($event) {
+            _vm.$emit("focus", $event)
+          },
+          blur: function($event) {
+            _vm.$emit("blur", $event)
+          }
+        }
       }),
       _vm._v(" "),
       _vm.errorMsg
@@ -11775,13 +11793,13 @@ var _input = _interopRequireDefault(require("./input"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_vue.default.component('s-button', _button.default);
+_vue.default.component('x-button', _button.default);
 
-_vue.default.component('s-icon', _icon.default);
+_vue.default.component('x-icon', _icon.default);
 
-_vue.default.component('s-button-group', _buttonGroup.default);
+_vue.default.component('x-button-group', _buttonGroup.default);
 
-_vue.default.component('s-input', _input.default);
+_vue.default.component('x-input', _input.default);
 
 new _vue.default({
   el: '#app',
