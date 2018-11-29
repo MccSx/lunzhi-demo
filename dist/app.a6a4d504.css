@@ -63,3 +63,27 @@
   position: relative;
   z-index: 1;
 }
+.wrapper[data-v-efdce1] {
+  display: inline-block;
+}
+.wrapper > input[data-v-efdce1] {
+  width: 128px;
+  height: 32px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333;
+  padding: 0 8px;
+}
+.wrapper > input[data-v-efdce1]:focus {
+  outline: none;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+.wrapper > input[data-v-efdce1]:hover {
+  border-color: #666;
+}
+.wrapper > input[disabled][data-v-efdce1], .wrapper > input[readonly][data-v-efdce1] {
+  border-color: #bbb;
+  color: #bbb;
+  cursor: not-allowed;
+}

@@ -14,6 +14,7 @@ import Icon from './icon'
 Vue.component('s-icon', Icon)
 
     export default {
+        name:'x_button',
         // props:['icon','iconPosition']
         props: {
             icon: {},

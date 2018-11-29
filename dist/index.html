@@ -8,20 +8,26 @@
             --button-radius:4px; --color:#333; --border-color:#999; --border-color-hover:#666;
         }</style>
     <style>.icon{width: 1em; height: 1em; vertical-align: -0.15em; fill: currentColor; overflow: hidden;}
-        #app{padding: 20px;}</style>
+        #app{padding-left: 20px;}
+        .box{margin-top: 20px;}</style>
 <link rel="stylesheet" href="/app.a6a4d504.css"></head>
 <body>
     <div id="app">
-        <s-button>按钮</s-button>
-        <s-button icon="settings">按钮</s-button>
-        <s-button icon="settings" icon-position="right">按钮</s-button>
-        <s-button icon="settings" :is-loading="isLoading" @click="isLoading = !isLoading">按钮</s-button>
-        <s-button-group>
-            <s-button icon="left">上一页</s-button>
-            <s-button icon="right" icon-position="right">下一页</s-button>
-        </s-button-group>
-
-        <div id="test"></div>
+        <div class="box">
+            <s-input value="张三"></s-input>
+            <s-input value="张三" :disabled="true"></s-input>
+            <s-input value="张三" :readonly="true"></s-input>
+        </div>
+        <div class="box">
+            <s-button>按钮</s-button>
+            <s-button icon="settings">按钮</s-button>
+            <s-button icon="settings" icon-position="right">按钮</s-button>
+            <s-button icon="settings" :is-loading="isLoading" @click="isLoading = !isLoading">按钮</s-button>
+            <s-button-group>
+                <s-button icon="left">上一页</s-button>
+                <s-button icon="right" icon-position="right">下一页</s-button>
+            </s-button-group>
+        </div>
     </div>
 <script src="/app.a6a4d504.js"></script>
 </body>
