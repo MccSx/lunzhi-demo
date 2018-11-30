@@ -92,6 +92,18 @@
   color: #bbb;
   cursor: not-allowed;
 }
+.wrapper > input.bottom-only[data-v-efdce1] {
+  border-radius: 0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+.wrapper > input.bottom-only[data-v-efdce1]:focus {
+  box-shadow: none;
+}
+.wrapper > input.bottom-only[disabled][data-v-efdce1] {
+  background: transparent;
+}
 .wrapper > .icon-error[data-v-efdce1] {
   fill: #F1453D;
 }

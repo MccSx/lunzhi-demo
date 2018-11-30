@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <input :value="value" type="text" :disabled="disabled" :readonly="readonly"
+        <input :value="value" type="text" :disabled="disabled" :readonly="readonly" :class="{'bottom-only':bottomOnly}"
           @change="$emit('change', $event.target.value)"
           @input="$emit('input', $event.target.value)"
           @focus="$emit('focus', $event.target.value)"
@@ -32,6 +32,10 @@ import Icon from './icon'
             },
             errorMsg: {
                 type: String
+            },
+            bottomOnly: {
+                type: Boolean,
+                default: false
             }
         },
         components: {Icon}
@@ -62,6 +66,14 @@ $font-size: 12px;
         &:focus{outline: none; box-shadow: inset 0 1px 3px rgba(0,0,0,0.5)}
         &:hover{border-color: $border-color-hover;}
         &[disabled], &[readonly]{border-color: $color-disabled; color: $color-disabled; cursor: not-allowed;}
+    }
+    > input.bottom-only{
+        border-radius: 0;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        &:focus{box-shadow: none;}
+        &[disabled]{background: transparent;}
     }
     > .icon-error{fill: $error-color;}
     > .error{color: $error-color;}

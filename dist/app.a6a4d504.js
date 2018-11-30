@@ -11689,6 +11689,10 @@ var _default = {
     },
     errorMsg: {
       type: String
+    },
+    bottomOnly: {
+      type: Boolean,
+      default: false
     }
   },
   components: {
@@ -11713,6 +11717,7 @@ exports.default = _default;
     { staticClass: "wrapper" },
     [
       _c("input", {
+        class: { "bottom-only": _vm.bottomOnly },
         attrs: { type: "text", disabled: _vm.disabled, readonly: _vm.readonly },
         domProps: { value: _vm.value },
         on: {
@@ -11804,8 +11809,7 @@ _vue.default.component('x-input', _input.default);
 new _vue.default({
   el: '#app',
   data: {
-    isLoading: false,
-    mes: '1'
+    isLoading: false
   }
 });
 },{"vue":"node_modules/vue/dist/vue.common.js","./button":"src/button.vue","./icon":"src/icon.vue","./button-group":"src/button-group.vue","./input":"src/input.vue"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -11835,7 +11839,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59765" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64455" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

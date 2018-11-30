@@ -25,9 +25,11 @@
             <div class="hei10"></div>
             <x-input value="张" error-msg="姓名不能少于两个字"></x-input>
             <div class="hei10"></div>
-            <x-input v-model="mes"></x-input>
-            <p>{{mes}}</p>
-            <button @click="mes+=1">加一</button>
+            <x-input value="李四" :bottom-only="true"></x-input>
+            <x-input value="李四" :bottom-only="true" :disabled="true"></x-input>
+            <x-input value="李四" :bottom-only="true" :readonly="true"></x-input>
+            <div class="hei10"></div>
+            <x-input value="张" :bottom-only="true" error-msg="姓名不能少于两个字"></x-input>
         </div>
         <div class="box">
             <x-button>按钮</x-button>
