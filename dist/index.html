@@ -15,6 +15,16 @@
 <body>
     <div id="app">
         <div class="box">
+            <x-button>按钮</x-button>
+            <x-button icon="settings">按钮</x-button>
+            <x-button icon="settings" icon-position="right">按钮</x-button>
+            <x-button icon="settings" :is-loading="isLoading" @click="isLoading = !isLoading">按钮</x-button>
+            <x-button-group>
+                <x-button icon="left">上一页</x-button>
+                <x-button icon="right" icon-position="right">下一页</x-button>
+            </x-button-group>
+        </div>
+        <div class="box">
             <x-input value="张三"></x-input>
             <x-input value="张三" :disabled="true"></x-input>
             <x-input value="张三" :readonly="true"></x-input>
@@ -25,17 +35,7 @@
             <x-input value="李四" :bottom-only="true" :disabled="true"></x-input>
             <x-input value="李四" :bottom-only="true" :readonly="true"></x-input>
             <div class="hei10"></div>
-            <x-input value="张" :bottom-only="true" error-msg="姓名不能少于两个字"></x-input>
-        </div>
-        <div class="box">
-            <x-button>按钮</x-button>
-            <x-button icon="settings">按钮</x-button>
-            <x-button icon="settings" icon-position="right">按钮</x-button>
-            <x-button icon="settings" :is-loading="isLoading" @click="isLoading = !isLoading">按钮</x-button>
-            <x-button-group>
-                <x-button icon="left">上一页</x-button>
-                <x-button icon="right" icon-position="right">下一页</x-button>
-            </x-button-group>
+            <x-input value="李" :bottom-only="true" error-msg="姓名不能少于两个字"></x-input>
         </div>
     </div>
 <script src="/app.a6a4d504.js"></script>
