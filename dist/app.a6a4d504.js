@@ -11862,10 +11862,10 @@ var _default = {
   name: 'x_col',
   props: {
     dataSpan: {
-      type: Number,
-      default: function _default() {
-        return 0;
-      }
+      type: [Number, String]
+    },
+    offset: {
+      type: [Number, String]
     }
   }
 };
@@ -11882,7 +11882,13 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col", class: "col-" + _vm.dataSpan })
+  return _c("div", {
+    staticClass: "col",
+    class: [
+      _vm.dataSpan && "col-" + _vm.dataSpan,
+      _vm.offset && "offset-" + _vm.offset
+    ]
+  })
 }
 var staticRenderFns = []
 render._withStripped = true

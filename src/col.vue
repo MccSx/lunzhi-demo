@@ -1,5 +1,5 @@
 <template>
-    <div class="col" :class="`col-${dataSpan}`"></div>
+    <div class="col" :class="[dataSpan && `col-${dataSpan}`, offset && `offset-${offset}`]"></div>
 </template>
 
 <script>
@@ -7,10 +7,10 @@
         name: 'x_col',
         props: {
             dataSpan: {
-                type: Number,
-                default() {
-                    return 0
-                }
+                type: [Number, String]
+            },
+            offset: {
+                type: [Number, String]
             }
         }
     }
@@ -25,6 +25,8 @@
     @for $n from 1 through 24{
         &.col-#{$n} {width: $n/24*100%;}
     }
-
+    @for $n from 1 through 24{
+        &.offset-#{$n} {margin-left: $n/24*100%;}
+    }
 }
 </style>
