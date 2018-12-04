@@ -116,8 +116,6 @@
 .col[data-v-45757f] {
   height: 40px;
   width: 50%;
-  background: #ccc;
-  border: 1px solid red;
 }
 .col.col-1[data-v-45757f] {
   width: 4.1666666667%;
@@ -262,4 +260,9 @@
 }
 .col.offset-24[data-v-45757f] {
   margin-left: 100%;
+}
+.col div[data-v-45757f] {
+  height: 100%;
+  border: 1px solid red;
+  background: #ccc;
 }
