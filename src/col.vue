@@ -1,6 +1,6 @@
 <template>
-    <div class="col" :class="[dataSpan && `col-${dataSpan}`, offset && `offset-${offset}`]"
-        :style="{paddingLeft:gutter/2+'px', paddingRight:gutter/2+'px'}"
+    <div class="col" :class="colClass"
+        :style="colStyle"
     >
         <div>
             <slot></slot>
@@ -17,6 +17,21 @@
             },
             offset: {
                 type: [Number, String]
+            }
+        },
+        computed: {
+            colClass() {
+                let {dataSpan, offset} = this
+                return [
+                    dataSpan && `col-${dataSpan}`,
+                    offset && `offset-${offset}`
+                ]
+            },
+            colStyle() {
+                return {
+                    paddingLeft: this.gutter/2+'px',
+                    paddingRight: this.gutter/2+'px'
+                }
             }
         },
         data() {

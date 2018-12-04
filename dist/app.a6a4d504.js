@@ -11803,6 +11803,14 @@ var _default = {
       type: [Number, String]
     }
   },
+  computed: {
+    rowStyle: function rowStyle() {
+      return {
+        marginLeft: -this.gutter / 2 + 'px',
+        marginRight: -this.gutter / 2 + 'px'
+      };
+    }
+  },
   mounted: function mounted() {
     var _this = this;
 
@@ -11826,13 +11834,7 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticClass: "row",
-      style: {
-        marginLeft: -_vm.gutter / 2 + "px",
-        marginRight: -_vm.gutter / 2 + "px"
-      }
-    },
+    { staticClass: "row", style: _vm.rowStyle },
     [_vm._t("default")],
     2
   )
@@ -11897,6 +11899,19 @@ var _default = {
       type: [Number, String]
     }
   },
+  computed: {
+    colClass: function colClass() {
+      var dataSpan = this.dataSpan,
+          offset = this.offset;
+      return [dataSpan && "col-".concat(dataSpan), offset && "offset-".concat(offset)];
+    },
+    colStyle: function colStyle() {
+      return {
+        paddingLeft: this.gutter / 2 + 'px',
+        paddingRight: this.gutter / 2 + 'px'
+      };
+    }
+  },
   data: function data() {
     return {
       gutter: 0
@@ -11918,17 +11933,7 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticClass: "col",
-      class: [
-        _vm.dataSpan && "col-" + _vm.dataSpan,
-        _vm.offset && "offset-" + _vm.offset
-      ],
-      style: {
-        paddingLeft: _vm.gutter / 2 + "px",
-        paddingRight: _vm.gutter / 2 + "px"
-      }
-    },
+    { staticClass: "col", class: _vm.colClass, style: _vm.colStyle },
     [_c("div", [_vm._t("default")], 2)]
   )
 }
