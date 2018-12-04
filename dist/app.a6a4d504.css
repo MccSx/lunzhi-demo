@@ -112,6 +112,7 @@
 }
 .row[data-v-475f83] {
   display: flex;
+  background: #ccc;
 }
 .col[data-v-45757f] {
   height: 40px;
@@ -263,6 +264,10 @@
 }
 .col div[data-v-45757f] {
   height: 100%;
-  border: 1px solid red;
-  background: #ccc;
+}
+.col:nth-child(odd) > div[data-v-45757f] {
+  background: #f1c40f;
+}
+.col:nth-child(even) > div[data-v-45757f] {
+  background: #D8AB00;
 }

@@ -31,5 +31,6 @@
 <style lang="scss" scoped>
 .row{
     display: flex;
+    background: #ccc;
 }
 </style>

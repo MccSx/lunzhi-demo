@@ -11899,6 +11899,11 @@ var _default = {
       type: [Number, String]
     }
   },
+  data: function data() {
+    return {
+      gutter: 0
+    };
+  },
   computed: {
     colClass: function colClass() {
       var dataSpan = this.dataSpan,
@@ -11911,11 +11916,6 @@ var _default = {
         paddingRight: this.gutter / 2 + 'px'
       };
     }
-  },
-  data: function data() {
-    return {
-      gutter: 0
-    };
   }
 };
 exports.default = _default;

@@ -19,6 +19,11 @@
                 type: [Number, String]
             }
         },
+        data() {
+            return {
+                gutter: 0
+            }
+        },
         computed: {
             colClass() {
                 let {dataSpan, offset} = this
@@ -32,11 +37,6 @@
                     paddingLeft: this.gutter/2+'px',
                     paddingRight: this.gutter/2+'px'
                 }
-            }
-        },
-        data() {
-            return {
-                gutter: 0
             }
         }
     }
@@ -54,8 +54,15 @@
     }
     div{
         height: 100%;
-        border: 1px solid red;
-        background: #ccc;
+        //border: 1px solid red;
+        //background: #82BF56;
+        
+    }
+    &:nth-child(odd)>div{
+        background: #f1c40f;
+    }
+    &:nth-child(even)>div{
+        background: #D8AB00;
     }
 }
 </style>
