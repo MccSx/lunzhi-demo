@@ -8,7 +8,7 @@
             --button-radius:4px; --color:#333; --border-color:#999; --border-color-hover:#666;
         }</style>
     <style>.icon{width: 1em; height: 1em; vertical-align: -0.15em; fill: currentColor; overflow: hidden;}
-        #app{padding-left: 20px;}
+        #app{padding-left: 20px; margin-right: 20px;}
         .box{margin-top: 20px;}
         .hei10{height: 10px;}</style>
 <link rel="stylesheet" href="/app.a6a4d504.css"></head>
@@ -36,6 +36,21 @@
             <x-input value="李四" :bottom-only="true" :readonly="true"></x-input>
             <div class="hei10"></div>
             <x-input value="李" :bottom-only="true" error-msg="姓名不能少于两个字"></x-input>
+        </div>
+        <div class="box">
+            <x-row>
+                <x-col></x-col>
+                <x-col></x-col>
+            </x-row>
+            <x-row>
+                <x-col></x-col>
+                <x-col></x-col>
+                <x-col></x-col>
+            </x-row>
+            <x-row>
+                <x-col :data-span="2"></x-col>
+                <x-col :data-span="22"></x-col>
+            </x-row>
         </div>
     </div>
 <script src="/app.a6a4d504.js"></script>
