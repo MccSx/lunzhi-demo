@@ -11879,6 +11879,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 //
 //
 //
@@ -11889,14 +11898,41 @@ exports.default = void 0;
 //
 //
 //
+var validator = function validator(value) {
+  var keys = Object.keys(value);
+  var valid = true;
+  keys.forEach(function (key) {
+    if (!['span', 'offset'].includes(key)) {
+      valid = false;
+    }
+  });
+  return valid;
+};
+
 var _default = {
   name: 'x_col',
   props: {
-    dataSpan: {
+    span: {
       type: [Number, String]
     },
     offset: {
       type: [Number, String]
+    },
+    pad: {
+      type: Object,
+      validator: validator
+    },
+    narrowPc: {
+      type: Object,
+      validator: validator
+    },
+    pc: {
+      type: Object,
+      validator: validator
+    },
+    widePc: {
+      type: Object,
+      validator: validator
     }
   },
   data: function data() {
@@ -11904,11 +11940,39 @@ var _default = {
       gutter: 0
     };
   },
+  methods: {
+    createClasses: function createClasses(obj) {
+      var str = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+
+      if (!obj) {
+        return [];
+      }
+
+      var arr = [];
+
+      if (obj.span) {
+        arr.push("col-".concat(str).concat(obj.span));
+      }
+
+      if (obj.offset) {
+        arr.push("offset-".concat(str).concat(obj.offset));
+      }
+
+      return arr;
+    }
+  },
   computed: {
     colClass: function colClass() {
-      var dataSpan = this.dataSpan,
-          offset = this.offset;
-      return [dataSpan && "col-".concat(dataSpan), offset && "offset-".concat(offset)];
+      var span = this.span,
+          offset = this.offset,
+          pad = this.pad,
+          narrowPc = this.narrowPc,
+          pc = this.pc,
+          widePc = this.widePc;
+      return _toConsumableArray(this.createClasses({
+        span: span,
+        offset: offset
+      })).concat(_toConsumableArray(this.createClasses(pad, 'pad-')), _toConsumableArray(this.createClasses(narrowPc, 'narrow-pc-')), _toConsumableArray(this.createClasses(pc, 'pc-')), _toConsumableArray(this.createClasses(widePc, 'wide-pc-')));
     },
     colStyle: function colStyle() {
       return {
@@ -12034,7 +12098,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52494" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60734" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
