@@ -14,6 +14,7 @@
         #app{padding-left: 20px; margin-right: 20px;}
         .box{margin-top: 20px; overflow: hidden;}
         .hei10{height: 10px;}
+        .demo{border: 1px solid #ccc; min-height: 50px;}
     </style>
 </head>
 <body>
@@ -79,6 +80,16 @@
                 <x-col>8</x-col>
                 <x-col>8</x-col>
             </x-row>
+        </div>
+        <div class="box">
+            <x-layout style="height: 50vh;">
+                <x-header class="demo">header</x-header>
+                <x-layout>
+                    <x-sider class="demo">sider</x-sider>
+                    <x-content class="demo">content</x-content>
+                </x-layout>
+                <x-footer class="demo">footer</x-footer>
+            </x-layout>
         </div>
     </div>
 <script src="./src/app.js"></script>

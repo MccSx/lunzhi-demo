@@ -10,7 +10,8 @@
     <style>.icon{width: 1em; height: 1em; vertical-align: -0.15em; fill: currentColor; overflow: hidden;}
         #app{padding-left: 20px; margin-right: 20px;}
         .box{margin-top: 20px; overflow: hidden;}
-        .hei10{height: 10px;}</style>
+        .hei10{height: 10px;}
+        .demo{border: 1px solid #ccc; min-height: 50px;}</style>
 <link rel="stylesheet" href="/app.a6a4d504.css"></head>
 <body>
     <div id="app">
@@ -75,6 +76,16 @@
                 <x-col>8</x-col>
                 <x-col>8</x-col>
             </x-row>
+        </div>
+        <div class="box">
+            <x-layout style="height: 50vh;">
+                <x-header class="demo">header</x-header>
+                <x-layout>
+                    <x-sider class="demo">sider</x-sider>
+                    <x-content class="demo">content</x-content>
+                </x-layout>
+                <x-footer class="demo">footer</x-footer>
+            </x-layout>
         </div>
     </div>
 <script src="/app.a6a4d504.js"></script>
