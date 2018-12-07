@@ -856,12 +856,24 @@
 }
 }
 .layout[data-v-64c689] {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
 .layout.hasSider[data-v-64c689] {
   flex-direction: row;
 }
+.header[data-v-a0ec23] {
+  background: #666;
+}
+.footer[data-v-b1389e] {
+  background: #999;
+}
 .content[data-v-0222fb] {
   flex-grow: 1;
+  background: #ccc;
+}
+.sider[data-v-f84921] {
+  background: #eee;
+  width: 100px;
 }

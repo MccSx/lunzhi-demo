@@ -26,10 +26,12 @@ export default {
 
 <style lang="scss" scoped>
 .layout{
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
+    &.hasSider{
+        flex-direction: row;
+    }
 }
-.layout.hasSider{
-    flex-direction: row;
-}
+
 </style>

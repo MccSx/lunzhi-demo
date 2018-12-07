@@ -11,5 +11,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.header{
+    background: #666;
+}
 </style>
