@@ -10,6 +10,7 @@ import Header from './header'
 import Footer from './footer'
 import Content from './content'
 import Sider from './sider'
+import toast from './plugin'
 
 Vue.component('x-button', Button)
 Vue.component('x-icon', Icon)
@@ -22,10 +23,14 @@ Vue.component('x-header', Header)
 Vue.component('x-footer', Footer)
 Vue.component('x-content', Content)
 Vue.component('x-sider', Sider)
+Vue.use(toast)
 
 new Vue({
     el:'#app',
     data:{
         isLoading:false
-    }
+    },
+    created() {
+        this.$toast()
+    },
 })
