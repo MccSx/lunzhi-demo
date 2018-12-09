@@ -10,7 +10,8 @@ import Header from './header'
 import Footer from './footer'
 import Content from './content'
 import Sider from './sider'
-import toast from './plugin'
+import Toast from './toast'
+import toastPlugin from './plugin'
 
 Vue.component('x-button', Button)
 Vue.component('x-icon', Icon)
@@ -23,7 +24,8 @@ Vue.component('x-header', Header)
 Vue.component('x-footer', Footer)
 Vue.component('x-content', Content)
 Vue.component('x-sider', Sider)
-Vue.use(toast)
+Vue.component('x-toast', Toast)
+Vue.use(toastPlugin)
 
 new Vue({
     el:'#app',
@@ -31,6 +33,11 @@ new Vue({
         isLoading:false
     },
     created() {
-        this.$toast()
+        //this.$toast()
     },
+    methods: {
+        showToast() {
+            this.$toast('没有更多数据了')
+        }
+    }
 })

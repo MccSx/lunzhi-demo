@@ -877,3 +877,9 @@
   background: #ddd;
   width: 100px;
 }
+.toast[data-v-f10d1a] {
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
