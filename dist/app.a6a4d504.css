@@ -878,14 +878,23 @@
   width: 100px;
 }
 .toast[data-v-f10d1a] {
-  width: 200px;
+  font-size: 14px;
   text-align: center;
+  line-height: 2.2;
   background: rgba(0, 0, 0, 0.5);
   color: #fff;
-  padding: 10px 20px;
+  padding: 0 10px;
   border-radius: 10px;
   position: fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
+  display: flex;
+}
+.toast .line[data-v-f10d1a] {
+  border-left: 1px solid #999;
+  margin: 0 10px;
+}
+.toast .close[data-v-f10d1a] {
+  cursor: pointer;
 }

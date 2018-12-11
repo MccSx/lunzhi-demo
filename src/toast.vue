@@ -1,6 +1,8 @@
 <template>
     <div class="toast">
         <slot></slot>
+        <div class="line" v-if="closeButton.text"></div>
+        <span class="close" v-if="closeButton.text" @click="userClose">{{closeButton.text}}</span>
     </div>    
 </template>
 
@@ -15,19 +17,34 @@
             time: {
                 type: Number,
                 default: 3000
+            },
+            closeButton: {
+                type: Object,
+                default() {
+                    return {
+                        text: '',
+                        callback: undefined
+                    }
+                }
             }
         },
         mounted() {
-            setTimeout(() => {
-                if (this.autoClose) {
-                    this.close()
-                }
-            }, this.time);
+            // setTimeout(() => {
+            //     if (this.autoClose) {
+            //         this.close()
+            //     }
+            // }, this.time);
         },
         methods: {
             close() {
                 this.$el.remove()
                 this.$destroy()
+            },
+            userClose() {
+                this.close()
+                if (this.closeButton && typeof this.closeButton.callback === 'function') {
+                    this.closeButton.callback()
+                }
             }
         }
     }
@@ -35,15 +52,24 @@
 
 <style lang="scss" scoped>
 .toast{
-    width: 200px;
+    font-size: 14px;
     text-align: center;
+    line-height: 2.2;
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
-    padding: 10px 20px;
+    padding: 0 10px;
     border-radius: 10px;
     position: fixed;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
+    display: flex;
+    .line{
+        border-left: 1px solid #999;
+        margin: 0 10px;
+    }
+    .close{
+        cursor: pointer;
+    }
 }
 </style>
