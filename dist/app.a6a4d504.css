@@ -890,11 +890,13 @@
   left: 50%;
   transform: translateX(-50%);
   display: flex;
+  align-items: center;
 }
 .toast .line[data-v-f10d1a] {
-  border-left: 1px solid #999;
+  border-left: 1px solid red;
   margin: 0 10px;
 }
 .toast .close[data-v-f10d1a] {
+  flex-shrink: 0;
   cursor: pointer;
 }

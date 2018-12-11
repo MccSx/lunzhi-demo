@@ -12511,9 +12511,7 @@ var _default = {
     Vue.prototype.$toast = function (message, toastOptions) {
       var Constructor = Vue.extend(_toast.default);
       var toast = new Constructor({
-        propsData: {
-          closeButton: toastOptions.closeButton
-        }
+        propsData: toastOptions
       });
       toast.$slots.default = message;
       toast.$mount();

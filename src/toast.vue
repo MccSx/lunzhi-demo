@@ -64,11 +64,13 @@
     left: 50%;
     transform: translateX(-50%);
     display: flex;
+    align-items: center;
     .line{
-        border-left: 1px solid #999;
+        border-left: 1px solid red;
         margin: 0 10px;
     }
     .close{
+        flex-shrink: 0;
         cursor: pointer;
     }
 }
