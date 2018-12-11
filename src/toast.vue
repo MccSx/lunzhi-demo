@@ -6,7 +6,30 @@
 
 <script>
     export default {
-        name: 'x_toast'
+        name: 'x_toast',
+        props: {
+            autoClose: {
+                type: Boolean,
+                default: true
+            },
+            time: {
+                type: Number,
+                default: 3000
+            }
+        },
+        mounted() {
+            setTimeout(() => {
+                if (this.autoClose) {
+                    this.close()
+                }
+            }, this.time);
+        },
+        methods: {
+            close() {
+                this.$el.remove()
+                this.$destroy()
+            }
+        }
     }
 </script>
 

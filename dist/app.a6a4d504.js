@@ -12389,7 +12389,32 @@ exports.default = void 0;
 //
 //
 var _default = {
-  name: 'x_toast'
+  name: 'x_toast',
+  props: {
+    autoClose: {
+      type: Boolean,
+      default: true
+    },
+    time: {
+      type: Number,
+      default: 3000
+    }
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    setTimeout(function () {
+      if (_this.autoClose) {
+        _this.close();
+      }
+    }, this.time);
+  },
+  methods: {
+    close: function close() {
+      this.$el.remove();
+      this.$destroy();
+    }
+  }
 };
 exports.default = _default;
         var $f10d1a = exports.default || module.exports;
@@ -12562,7 +12587,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58665" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52427" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
