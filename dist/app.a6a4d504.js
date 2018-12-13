@@ -12411,11 +12411,17 @@ var _default = {
       }
     }
   },
-  mounted: function mounted() {// setTimeout(() => {
+  mounted: function mounted() {
+    var _this = this;
+
+    // setTimeout(() => {
     //     if (this.autoClose) {
     //         this.close()
     //     }
     // }, this.time);
+    this.$nextTick(function () {
+      _this.$refs.line.style.height = _this.$refs.toast.getBoundingClientRect().height + 'px';
+    });
   },
   methods: {
     close: function close() {
@@ -12446,11 +12452,13 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "toast" },
+    { ref: "toast", staticClass: "toast" },
     [
       _vm._t("default"),
       _vm._v(" "),
-      _vm.closeButton.text ? _c("div", { staticClass: "line" }) : _vm._e(),
+      _vm.closeButton.text
+        ? _c("div", { ref: "line", staticClass: "line" })
+        : _vm._e(),
       _vm._v(" "),
       _vm.closeButton.text
         ? _c("span", { staticClass: "close", on: { click: _vm.userClose } }, [
@@ -12626,7 +12634,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52427" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60405" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

@@ -893,7 +893,7 @@
   align-items: center;
 }
 .toast .line[data-v-f10d1a] {
-  border-left: 1px solid red;
+  border-left: 1px solid #999;
   margin: 0 10px;
 }
 .toast .close[data-v-f10d1a] {
