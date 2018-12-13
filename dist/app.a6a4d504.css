@@ -886,7 +886,6 @@
   padding: 0 10px;
   border-radius: 10px;
   position: fixed;
-  top: 0;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -899,4 +898,14 @@
 .toast .close[data-v-f10d1a] {
   flex-shrink: 0;
   cursor: pointer;
+}
+.toast.position-top[data-v-f10d1a] {
+  top: 0;
+}
+.toast.position-middle[data-v-f10d1a] {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.toast.position-bottom[data-v-f10d1a] {
+  bottom: 0;
 }

@@ -12382,6 +12382,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -12409,19 +12412,31 @@ var _default = {
           callback: undefined
         };
       }
+    },
+    position: {
+      type: String,
+      default: 'top',
+      validator: function validator(value) {
+        return ['top', 'middle', 'bottom'].indexOf(value) !== -1;
+      }
     }
   },
   mounted: function mounted() {
     var _this = this;
 
-    // setTimeout(() => {
-    //     if (this.autoClose) {
-    //         this.close()
-    //     }
-    // }, this.time);
+    setTimeout(function () {
+      if (_this.autoClose) {
+        _this.close();
+      }
+    }, this.time);
     this.$nextTick(function () {
       _this.$refs.line.style.height = _this.$refs.toast.getBoundingClientRect().height + 'px';
     });
+  },
+  computed: {
+    toastClasses: function toastClasses() {
+      return _defineProperty({}, "position-".concat(this.position), true);
+    }
   },
   methods: {
     close: function close() {
@@ -12452,7 +12467,7 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { ref: "toast", staticClass: "toast" },
+    { ref: "toast", staticClass: "toast", class: _vm.toastClasses },
     [
       _vm._t("default"),
       _vm._v(" "),
@@ -12597,12 +12612,7 @@ new _vue.default({
   methods: {
     showToast: function showToast() {
       this.$toast('没有更多数据了', {
-        closeButton: {
-          text: '关闭',
-          callback: function callback() {
-            console.log('执行了callback');
-          }
-        }
+        position: 'middle'
       });
     }
   }

@@ -1,5 +1,5 @@
 <template>
-    <div class="toast" ref="toast">
+    <div class="toast" ref="toast" :class="toastClasses">
         <slot></slot>
         <div class="line" ref="line" v-if="closeButton.text"></div>
         <span class="close" v-if="closeButton.text" @click="userClose">{{closeButton.text}}</span>
@@ -26,17 +26,29 @@
                         callback: undefined
                     }
                 }
+            },
+            position:{
+                type: String,
+                default: 'top',
+                validator(value) {
+                    return ['top', 'middle', 'bottom'].indexOf(value) !== -1
+                }
             }
         },
         mounted() {
-            // setTimeout(() => {
-            //     if (this.autoClose) {
-            //         this.close()
-            //     }
-            // }, this.time);
+            setTimeout(() => {
+                if (this.autoClose) {
+                    this.close()
+                }
+            }, this.time);
             this.$nextTick(() => {
                 this.$refs.line.style.height = this.$refs.toast.getBoundingClientRect().height + 'px'
             })
+        },
+        computed: {
+            toastClasses() {
+                return { [`position-${this.position}`] : true }
+            }
         },
         methods: {
             close() {
@@ -63,7 +75,6 @@
     padding: 0 10px;
     border-radius: 10px;
     position: fixed;
-    top: 0;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -75,6 +86,16 @@
     .close{
         flex-shrink: 0;
         cursor: pointer;
+    }
+    &.position-top{
+        top: 0;
+    }
+    &.position-middle{
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    &.position-bottom{
+        bottom: 0;
     }
 }
 </style>

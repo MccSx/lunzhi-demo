@@ -38,12 +38,7 @@ new Vue({
     methods: {
         showToast() {
             this.$toast('没有更多数据了', {
-                closeButton: {
-                    text: '关闭',
-                    callback: () => {
-                        console.log('执行了callback')
-                    }
-                }
+                position: 'middle'
             })
         }
     }
