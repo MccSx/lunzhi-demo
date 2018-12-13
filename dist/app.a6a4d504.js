@@ -12430,7 +12430,9 @@ var _default = {
       }
     }, this.time);
     this.$nextTick(function () {
-      _this.$refs.line.style.height = _this.$refs.toast.getBoundingClientRect().height + 'px';
+      if (_this.$refs.line) {
+        _this.$refs.line.style.height = _this.$refs.toast.getBoundingClientRect().height + 'px';
+      }
     });
   },
   computed: {
@@ -12529,16 +12531,26 @@ var _toast = _interopRequireDefault(require("./toast"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function createToast(Vue, propsData, message) {
+  var Constructor = Vue.extend(_toast.default);
+  var toast = new Constructor({
+    propsData: propsData
+  });
+  toast.$slots.default = [message];
+  toast.$mount();
+  document.body.appendChild(toast.$el);
+  return toast;
+}
+
+var currentToast;
 var _default = {
   install: function install(Vue, options) {
     Vue.prototype.$toast = function (message, toastOptions) {
-      var Constructor = Vue.extend(_toast.default);
-      var toast = new Constructor({
-        propsData: toastOptions
-      });
-      toast.$slots.default = message;
-      toast.$mount();
-      document.body.appendChild(toast.$el);
+      if (currentToast) {
+        currentToast.close();
+      }
+
+      currentToast = createToast(Vue, toastOptions, message);
     };
   }
 };

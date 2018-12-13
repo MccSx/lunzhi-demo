@@ -42,7 +42,9 @@
                 }
             }, this.time);
             this.$nextTick(() => {
-                this.$refs.line.style.height = this.$refs.toast.getBoundingClientRect().height + 'px'
+                if (this.$refs.line) {
+                    this.$refs.line.style.height = this.$refs.toast.getBoundingClientRect().height + 'px'
+                }
             })
         },
         computed: {
