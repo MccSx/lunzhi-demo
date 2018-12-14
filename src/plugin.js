@@ -10,6 +10,7 @@ function createToast(Vue, propsData, message) {
     document.body.appendChild(toast.$el)
     return toast
 }
+
 let currentToast
 export default {
     install(Vue, options) {

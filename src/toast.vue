@@ -68,7 +68,12 @@
 </script>
 
 <style lang="scss" scoped>
+@keyframes fade_in {
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+}
 .toast{
+    animation: fade_in 1s;
     font-size: 14px;
     text-align: center;
     line-height: 2.2;

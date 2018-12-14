@@ -877,7 +877,16 @@
   background: #ddd;
   width: 100px;
 }
+@keyframes fade_in-data-v-f10d1a {
+0% {
+    opacity: 0;
+}
+100% {
+    opacity: 1;
+}
+}
 .toast[data-v-f10d1a] {
+  animation: fade_in-data-v-f10d1a 1s;
   font-size: 14px;
   text-align: center;
   line-height: 2.2;
