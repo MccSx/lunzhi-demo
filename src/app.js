@@ -40,6 +40,14 @@ new Vue({
             this.$toast('没有更多数据了', {
                 position: 'middle'
             })
+        },
+        showToastCanClose() {
+            this.$toast('没有更多数据了', {
+                closeButton: {
+                    text: '关闭',
+                    callback() {alert('成功关闭')}
+                }
+            })
         }
     }
 })
