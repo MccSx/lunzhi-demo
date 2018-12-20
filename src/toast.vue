@@ -1,8 +1,10 @@
 <template>
-    <div class="toast" ref="toast" :class="toastClasses">
-        <slot></slot>
-        <div class="line" ref="line" v-if="closeButton.text"></div>
-        <span class="close" v-if="closeButton.text" @click="userClose">{{closeButton.text}}</span>
+    <div class="wrapper" :class="toastClasses">
+        <div class="toast" ref="toast">
+            <slot></slot>
+            <div class="line" ref="line" v-if="closeButton.text"></div>
+            <span class="close" v-if="closeButton.text" @click="userClose">{{closeButton.text}}</span>
+        </div>
     </div>    
 </template>
 
@@ -16,7 +18,7 @@
             },
             time: {
                 type: Number,
-                default: 3000
+                default: 1000
             },
             closeButton: {
                 type: Object,
@@ -69,12 +71,46 @@
 </script>
 
 <style lang="scss" scoped>
-@keyframes fade_in {
+@keyframes fadeInFromTop {
+    0%{opacity: 0; transform: translateY(-100%);}
+    100%{opacity: 1; transform: translateY(0);}
+}
+@keyframes fadeInFromMiddle {
     0%{opacity: 0;}
     100%{opacity: 1;}
 }
+@keyframes fadeInFromBottom {
+    0%{opacity: 0; transform: translateY(100%);}
+    100%{opacity: 1; transform: translateY(0);}
+}
+.wrapper{
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    &.position-top{
+        top: 0;
+        .toast{
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            animation: fadeInFromTop 300ms;
+        }
+    }
+    &.position-middle{
+        top: 50%;
+        transform: translateY(-50%);
+        animation: fadeInFromMiddle 300ms;
+    }
+    &.position-bottom{
+        bottom: 0;
+        .toast{
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            animation: fadeInFromBottom 300ms;
+        }
+    }
+}
 .toast{
-    animation: fade_in 1s;
+    
     font-size: 14px;
     text-align: center;
     line-height: 2.2;
@@ -82,9 +118,6 @@
     color: #fff;
     padding: 0 10px;
     border-radius: 10px;
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
     align-items: center;
     .line{
@@ -94,16 +127,6 @@
     .close{
         flex-shrink: 0;
         cursor: pointer;
-    }
-    &.position-top{
-        top: 0;
-    }
-    &.position-middle{
-        top: 50%;
-        transform: translateY(-50%);
-    }
-    &.position-bottom{
-        bottom: 0;
     }
 }
 </style>

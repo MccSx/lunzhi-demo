@@ -48,6 +48,21 @@ new Vue({
                     callback() {alert('成功关闭')}
                 }
             })
+        },
+        showToastTop() {
+            this.$toast('top出现', {
+                position: 'top'
+            })
+        },
+        showToastMiddle() {
+            this.$toast('middle出现', {
+                position: 'middle'
+            })
+        },
+        showToastBottom() {
+            this.$toast('bottom出现', {
+                position: 'bottom'
+            })
         }
     }
 })

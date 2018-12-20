@@ -12393,6 +12393,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 var _default = {
   name: 'x_toast',
   props: {
@@ -12402,7 +12404,7 @@ var _default = {
     },
     time: {
       type: Number,
-      default: 3000
+      default: 1000
     },
     closeButton: {
       type: Object,
@@ -12443,6 +12445,7 @@ var _default = {
   methods: {
     close: function close() {
       this.$el.remove();
+      this.$emit('beforeClose');
       this.$destroy();
     },
     userClose: function userClose() {
@@ -12467,24 +12470,26 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { ref: "toast", staticClass: "toast", class: _vm.toastClasses },
-    [
-      _vm._t("default"),
-      _vm._v(" "),
-      _vm.closeButton.text
-        ? _c("div", { ref: "line", staticClass: "line" })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.closeButton.text
-        ? _c("span", { staticClass: "close", on: { click: _vm.userClose } }, [
-            _vm._v(_vm._s(_vm.closeButton.text))
-          ])
-        : _vm._e()
-    ],
-    2
-  )
+  return _c("div", { staticClass: "wrapper", class: _vm.toastClasses }, [
+    _c(
+      "div",
+      { ref: "toast", staticClass: "toast" },
+      [
+        _vm._t("default"),
+        _vm._v(" "),
+        _vm.closeButton.text
+          ? _c("div", { ref: "line", staticClass: "line" })
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.closeButton.text
+          ? _c("span", { staticClass: "close", on: { click: _vm.userClose } }, [
+              _vm._v(_vm._s(_vm.closeButton.text))
+            ])
+          : _vm._e()
+      ],
+      2
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -12531,13 +12536,14 @@ var _toast = _interopRequireDefault(require("./toast"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function createToast(Vue, propsData, message) {
+function createToast(Vue, propsData, message, onClose) {
   var Constructor = Vue.extend(_toast.default);
   var toast = new Constructor({
     propsData: propsData
   });
   toast.$slots.default = [message];
   toast.$mount();
+  toast.$on('beforeClose', onClose);
   document.body.appendChild(toast.$el);
   return toast;
 }
@@ -12550,7 +12556,9 @@ var _default = {
         currentToast.close();
       }
 
-      currentToast = createToast(Vue, toastOptions, message);
+      currentToast = createToast(Vue, toastOptions, message, function () {
+        currentToast = null;
+      });
     };
   }
 };
@@ -12626,6 +12634,31 @@ new _vue.default({
       this.$toast('没有更多数据了', {
         position: 'middle'
       });
+    },
+    showToastCanClose: function showToastCanClose() {
+      this.$toast('没有更多数据了', {
+        closeButton: {
+          text: '关闭',
+          callback: function callback() {
+            alert('成功关闭');
+          }
+        }
+      });
+    },
+    showToastTop: function showToastTop() {
+      this.$toast('top出现', {
+        position: 'top'
+      });
+    },
+    showToastMiddle: function showToastMiddle() {
+      this.$toast('middle出现', {
+        position: 'middle'
+      });
+    },
+    showToastBottom: function showToastBottom() {
+      this.$toast('bottom出现', {
+        position: 'bottom'
+      });
     }
   }
 });
@@ -12656,7 +12689,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60405" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65442" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
