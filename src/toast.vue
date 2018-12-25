@@ -72,16 +72,16 @@
 
 <style lang="scss" scoped>
 @keyframes fadeInFromTop {
-    0%{opacity: 0; transform: translateY(-100%);}
-    100%{opacity: 1; transform: translateY(0);}
+    0% {opacity: 0; transform: translateY(-100%);}
+    100% {opacity: 1; transform: translateY(0);}
 }
 @keyframes fadeInFromMiddle {
-    0%{opacity: 0;}
-    100%{opacity: 1;}
+    0% {opacity: 0;}
+    100% {opacity: 1;}
 }
 @keyframes fadeInFromBottom {
-    0%{opacity: 0; transform: translateY(100%);}
-    100%{opacity: 1; transform: translateY(0);}
+    0% {opacity: 0; transform: translateY(100%);}
+    100% {opacity: 1; transform: translateY(0);}
 }
 .wrapper{
     position: fixed;
