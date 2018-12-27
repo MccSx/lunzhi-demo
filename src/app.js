@@ -12,6 +12,11 @@ import Content from './content'
 import Sider from './sider'
 import Toast from './toast'
 import toastPlugin from './plugin'
+import Tabs from './tabs'
+import TabsHead from './tabs-head'
+import TabsItem from './tabs-item'
+import TabsBody from './tabs-body'
+import TabsPane from './tabs-pane'
 
 Vue.component('x-button', Button)
 Vue.component('x-icon', Icon)
@@ -26,11 +31,17 @@ Vue.component('x-content', Content)
 Vue.component('x-sider', Sider)
 Vue.component('x-toast', Toast)
 Vue.use(toastPlugin)
+Vue.component('x-tabs', Tabs)
+Vue.component('x-tabs-head', TabsHead)
+Vue.component('x-tabs-item', TabsItem)
+Vue.component('x-tabs-body', TabsBody)
+Vue.component('x-tabs-pane', TabsPane)
 
 new Vue({
     el:'#app',
     data:{
-        isLoading:false
+        isLoading:false,
+        selectTab: 'tab1'
     },
     created() {
         //this.$toast()
