@@ -6,7 +6,13 @@
 
 <script>
 export default {
-    name: 'x_tabs'
+    name: 'x_tabs',
+    props: {
+        selected: {
+            type: String,
+            default: ''
+        }
+    }
 }
 </script>
 
