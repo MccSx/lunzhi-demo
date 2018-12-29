@@ -6,7 +6,13 @@
 
 <script>
 export default {
-    name: 'x_tabs_item'
+    name: 'x_tabs_item',
+    props: {
+        disabled: {
+            type: Boolean,
+            default: false
+        }
+    }
 }
 </script>
 

@@ -11,8 +11,18 @@ export default {
         selected: {
             type: String,
             default: ''
+        },
+        direction: {
+            type: Boolean,
+            default: 'transverse',
+            validator() {
+                ['transverse', 'vertical'].indexOf(value) > 0
+            }
         }
-    }
+    },
+    created() {
+        // this.$emit('update:selected', 'xxxx')
+    },
 }
 </script>
 
