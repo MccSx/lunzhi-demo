@@ -12570,6 +12570,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+
+var _vue = _interopRequireDefault(require("vue"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 //
 //
 //
@@ -12577,7 +12582,32 @@ exports.default = void 0;
 //
 //
 var _default = {
-  name: 'x_tabs'
+  name: 'x_tabs',
+  props: {
+    selected: {
+      type: String,
+      default: ''
+    },
+    direction: {
+      type: String,
+      default: 'transverse',
+      validator: function validator(item) {
+        return ['transverse', 'vertical'].indexOf(item) >= 0;
+      }
+    }
+  },
+  data: function data() {
+    return {
+      eventHub: new _vue.default()
+    };
+  },
+  provide: function provide() {
+    return {
+      eventHub: this.eventHub
+    };
+  },
+  created: function created() {// this.$emit('update:selected', 'xxxx')
+  }
 };
 exports.default = _default;
         var $d39cf1 = exports.default || module.exports;
@@ -12627,13 +12657,14 @@ render._withStripped = true
       
       }
     })();
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.common.js"}],"src/tabs-head.vue":[function(require,module,exports) {
+},{"vue":"node_modules/vue/dist/vue.common.js","_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js"}],"src/tabs-head.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+//
 //
 //
 //
@@ -12656,7 +12687,12 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "tabs-head" }, [_vm._t("default")], 2)
+  return _c(
+    "div",
+    { staticClass: "tabs-head" },
+    [_vm._t("default"), _vm._v(" "), _vm._t("action")],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -12705,7 +12741,28 @@ exports.default = void 0;
 //
 //
 var _default = {
-  name: 'x_tabs_item'
+  name: 'x_tabs_item',
+  inject: ['eventHub'],
+  props: {
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    name: {
+      type: String,
+      required: true
+    }
+  },
+  created: function created() {
+    this.eventHub.$on('update:selected', function (name) {
+      console.log(name);
+    });
+  },
+  methods: {
+    itemClick: function itemClick() {
+      this.eventHub.$emit('update:selected', this.name);
+    }
+  }
 };
 exports.default = _default;
         var $7b5145 = exports.default || module.exports;
@@ -12720,7 +12777,12 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "tabs-item" }, [_vm._t("default")], 2)
+  return _c(
+    "div",
+    { staticClass: "tabs-item", on: { click: _vm.itemClick } },
+    [_vm._t("default")],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -12833,7 +12895,19 @@ exports.default = void 0;
 //
 //
 var _default = {
-  name: 'x-tabs-pane'
+  name: 'x-tabs-pane',
+  inject: ['eventHub'],
+  props: {
+    name: {
+      type: String,
+      required: true
+    }
+  },
+  created: function created() {
+    this.eventHub.$on('update:selected', function (name) {
+      console.log(name);
+    });
+  }
 };
 exports.default = _default;
         var $9cbe83 = exports.default || module.exports;
@@ -12966,7 +13040,7 @@ new _vue.default({
   el: '#app',
   data: {
     isLoading: false,
-    selectTab: 'tab1'
+    selectedTab: 'tab1'
   },
   created: function created() {//this.$toast()
   },
@@ -13030,7 +13104,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59586" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49648" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

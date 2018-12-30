@@ -6,7 +6,19 @@
 
 <script>
 export default {
-    name: 'x-tabs-pane'
+    name: 'x-tabs-pane',
+    inject: ['eventHub'],
+    props: {
+        name: {
+            type: String,
+            required: true
+        }
+    },
+    created() {
+        this.eventHub.$on('update:selected', (name) => {
+            console.log(name)
+        })
+    },
 }
 </script>
 

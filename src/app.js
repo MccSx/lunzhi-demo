@@ -41,7 +41,7 @@ new Vue({
     el:'#app',
     data:{
         isLoading:false,
-        selectTab: 'tab1'
+        selectedTab: 'tab1'
     },
     created() {
         //this.$toast()

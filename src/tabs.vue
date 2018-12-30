@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 export default {
     name: 'x_tabs',
     props: {
@@ -13,11 +14,21 @@ export default {
             default: ''
         },
         direction: {
-            type: Boolean,
+            type: String,
             default: 'transverse',
-            validator() {
-                ['transverse', 'vertical'].indexOf(value) > 0
+            validator(item) {
+               return ['transverse', 'vertical'].indexOf(item) >= 0
             }
+        }
+    },
+    data() {
+        return {
+            eventHub: new Vue()
+        }
+    },
+    provide() {
+        return {
+            eventHub: this.eventHub
         }
     },
     created() {
