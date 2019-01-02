@@ -11,7 +11,7 @@ export default {
     props: {
         selected: {
             type: String,
-            default: ''
+            required: true
         },
         direction: {
             type: String,
@@ -31,12 +31,14 @@ export default {
             eventHub: this.eventHub
         }
     },
-    created() {
-        // this.$emit('update:selected', 'xxxx')
-    },
+    mounted() {
+        this.eventHub.$emit('update:selected', this.selected)
+    }
 }
 </script>
 
 <style lang="scss" scoped>
-.tabs{}
+.tabs{
+    
+}
 </style>

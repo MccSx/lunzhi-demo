@@ -12586,7 +12586,7 @@ var _default = {
   props: {
     selected: {
       type: String,
-      default: ''
+      required: true
     },
     direction: {
       type: String,
@@ -12606,7 +12606,8 @@ var _default = {
       eventHub: this.eventHub
     };
   },
-  created: function created() {// this.$emit('update:selected', 'xxxx')
+  mounted: function mounted() {
+    this.eventHub.$emit('update:selected', this.selected);
   }
 };
 exports.default = _default;
@@ -12671,6 +12672,8 @@ exports.default = void 0;
 //
 //
 //
+//
+//
 var _default = {
   name: 'x_tabs_head'
 };
@@ -12690,7 +12693,11 @@ exports.default = _default;
   return _c(
     "div",
     { staticClass: "tabs-head" },
-    [_vm._t("default"), _vm._v(" "), _vm._t("action")],
+    [
+      _vm._t("default"),
+      _vm._v(" "),
+      _c("div", { staticClass: "action-wrapper" }, [_vm._t("action")], 2)
+    ],
     2
   )
 }
@@ -12743,6 +12750,11 @@ exports.default = void 0;
 var _default = {
   name: 'x_tabs_item',
   inject: ['eventHub'],
+  data: function data() {
+    return {
+      active: false
+    };
+  },
   props: {
     disabled: {
       type: Boolean,
@@ -12754,8 +12766,14 @@ var _default = {
     }
   },
   created: function created() {
+    var _this = this;
+
     this.eventHub.$on('update:selected', function (name) {
-      console.log(name);
+      if (name === _this.name) {
+        _this.active = true;
+      } else {
+        _this.active = false;
+      }
     });
   },
   methods: {
@@ -12779,7 +12797,11 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "tabs-item", on: { click: _vm.itemClick } },
+    {
+      staticClass: "tabs-item",
+      class: _vm.active ? "active" : "",
+      on: { click: _vm.itemClick }
+    },
     [_vm._t("default")],
     2
   )
@@ -12897,6 +12919,11 @@ exports.default = void 0;
 var _default = {
   name: 'x-tabs-pane',
   inject: ['eventHub'],
+  data: function data() {
+    return {
+      active: false
+    };
+  },
   props: {
     name: {
       type: String,
@@ -12904,8 +12931,14 @@ var _default = {
     }
   },
   created: function created() {
+    var _this = this;
+
     this.eventHub.$on('update:selected', function (name) {
-      console.log(name);
+      if (name === _this.name) {
+        _this.active = true;
+      } else {
+        _this.active = false;
+      }
     });
   }
 };
@@ -12922,7 +12955,23 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "tabs-pane" }, [_vm._t("default")], 2)
+  return _c(
+    "div",
+    {
+      directives: [
+        {
+          name: "show",
+          rawName: "v-show",
+          value: _vm.active,
+          expression: "active"
+        }
+      ],
+      staticClass: "tabs-pane",
+      class: _vm.active ? "active" : ""
+    },
+    [_vm._t("default")],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -13104,7 +13153,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49648" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64386" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

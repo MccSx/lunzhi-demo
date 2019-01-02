@@ -1,5 +1,5 @@
 <template>
-    <div class="tabs-item" @click="itemClick">
+    <div class="tabs-item" @click="itemClick" :class="active ? 'active' : ''">
         <slot></slot>
     </div>
 </template>
@@ -8,6 +8,11 @@
 export default {
     name: 'x_tabs_item',
     inject: ['eventHub'],
+    data() {
+        return {
+            active: false
+        }
+    },
     props: {
         disabled: {
             type: Boolean,
@@ -20,7 +25,11 @@ export default {
     },
     created() {
         this.eventHub.$on('update:selected', (name) => {
-            console.log(name)
+            if (name === this.name) {
+                this.active = true
+            } else {
+                this.active = false                
+            }
         })
     },
     methods: {
@@ -32,5 +41,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.tabs-item{}
+.tabs-item{
+    padding: 0 1em;
+    &.active{
+        background: green;
+    }
+}
 </style>

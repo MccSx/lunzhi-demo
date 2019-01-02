@@ -95,11 +95,14 @@
             <button @click="showToastBottom">bottom</button>
         </div>
         <div class="box">
-            <x-tabs>
-                <x-tabs-head :selected.sync="selectedTab">
+            <x-tabs :selected="selectedTab">
+                <x-tabs-head>
                     <x-tabs-item name="tab1">tab1</x-tabs-item>
                     <x-tabs-item name="tab2">tab2</x-tabs-item>
                     <x-tabs-item name="tab3">tab3</x-tabs-item>
+                    <template slot="action">
+                        <button>设置</button>
+                    </template>
                 </x-tabs-head>
                 <x-tabs-body>
                     <x-tabs-pane name="tab1">tab1内容</x-tabs-pane>
