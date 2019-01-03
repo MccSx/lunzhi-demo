@@ -35,7 +35,7 @@ export default {
 .tabs-pane{
     // display: none;
     &.active{
-        background: green;
+        // background: green;
     }
 }
 </style>

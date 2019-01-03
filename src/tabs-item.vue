@@ -43,8 +43,10 @@ export default {
 <style lang="scss" scoped>
 .tabs-item{
     padding: 0 1em;
+    cursor: pointer;
+    line-height: 40px;
     &.active{
-        background: green;
+        color: #409EFF;
     }
 }
 </style>

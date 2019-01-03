@@ -15,11 +15,11 @@ export default {
 
 <style lang="scss" scoped>
 .tabs-head{
-    border: 1px solid red;
-    height: 50px;
+    height: 40px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    border-bottom: 1px solid #ddd;
     .action-wrapper{
         margin-left: auto;
     }

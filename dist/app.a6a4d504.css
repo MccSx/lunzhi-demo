@@ -951,21 +951,20 @@
   cursor: pointer;
 }
 .tabs-head[data-v-69f3d8] {
-  border: 1px solid red;
-  height: 50px;
+  height: 40px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  border-bottom: 1px solid #ddd;
 }
 .tabs-head .action-wrapper[data-v-69f3d8] {
   margin-left: auto;
 }
 .tabs-item[data-v-7b5145] {
   padding: 0 1em;
+  cursor: pointer;
+  line-height: 40px;
 }
 .tabs-item.active[data-v-7b5145] {
-  background: green;
-}
-.tabs-pane.active[data-v-9cbe83] {
-  background: green;
+  color: #409EFF;
 }
