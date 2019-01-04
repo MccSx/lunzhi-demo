@@ -32,7 +32,16 @@ export default {
         }
     },
     mounted() {
-        this.eventHub.$emit('update:selected', this.selected)
+        this.$children.forEach((vm) => {
+            if(vm.$options.name === 'x_tabs_head') {
+                vm.$children.forEach((vmChild) => {
+                    if(vmChild.$options.name === 'x_tabs_item' && vmChild.name === this.selected) {
+                        let {width,left} = vmChild.$el.getBoundingClientRect()
+                        this.eventHub.$emit('update:selected', this.selected, width, left)                       
+                    }
+                })
+            }
+        })
     }
 }
 </script>

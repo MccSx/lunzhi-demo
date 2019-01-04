@@ -24,7 +24,7 @@ export default {
         }
     },
     created() {
-        this.eventHub.$on('update:selected', (name) => {
+        this.eventHub.$on('update:selected', (name, width) => {
             if (name === this.name) {
                 this.active = true
             } else {
@@ -34,7 +34,8 @@ export default {
     },
     methods: {
         itemClick() {
-            this.eventHub.$emit('update:selected', this.name)
+            let {width, left} = this.$el.getBoundingClientRect()
+            this.eventHub.$emit('update:selected', this.name, width, left)
         }
     },
 }

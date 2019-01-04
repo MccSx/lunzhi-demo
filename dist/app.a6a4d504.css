@@ -956,6 +956,13 @@
   justify-content: flex-start;
   align-items: center;
   border-bottom: 1px solid #ddd;
+  position: relative;
+}
+.tabs-head .line[data-v-69f3d8] {
+  position: absolute;
+  bottom: 0;
+  border-bottom: 2px solid #409EFF;
+  transition: all 350ms;
 }
 .tabs-head .action-wrapper[data-v-69f3d8] {
   margin-left: auto;

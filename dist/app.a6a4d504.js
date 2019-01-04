@@ -12607,7 +12607,21 @@ var _default = {
     };
   },
   mounted: function mounted() {
-    this.eventHub.$emit('update:selected', this.selected);
+    var _this = this;
+
+    this.$children.forEach(function (vm) {
+      if (vm.$options.name === 'x_tabs_head') {
+        vm.$children.forEach(function (vmChild) {
+          if (vmChild.$options.name === 'x_tabs_item' && vmChild.name === _this.selected) {
+            var _vmChild$$el$getBound = vmChild.$el.getBoundingClientRect(),
+                width = _vmChild$$el$getBound.width,
+                left = _vmChild$$el$getBound.left;
+
+            _this.eventHub.$emit('update:selected', _this.selected, width, left);
+          }
+        });
+      }
+    });
   }
 };
 exports.default = _default;
@@ -12674,8 +12688,19 @@ exports.default = void 0;
 //
 //
 //
+//
 var _default = {
-  name: 'x_tabs_head'
+  name: 'x_tabs_head',
+  inject: ['eventHub'],
+  mounted: function mounted() {
+    var _this = this;
+
+    this.eventHub.$on('update:selected', function (name, width, left) {
+      // console.log(left)
+      _this.$refs.line.style.width = width + 'px';
+      _this.$refs.line.style.left = left + 'px';
+    });
+  }
 };
 exports.default = _default;
         var $69f3d8 = exports.default || module.exports;
@@ -12695,6 +12720,8 @@ exports.default = _default;
     { staticClass: "tabs-head" },
     [
       _vm._t("default"),
+      _vm._v(" "),
+      _c("div", { ref: "line", staticClass: "line" }),
       _vm._v(" "),
       _c("div", { staticClass: "action-wrapper" }, [_vm._t("action")], 2)
     ],
@@ -12768,7 +12795,7 @@ var _default = {
   created: function created() {
     var _this = this;
 
-    this.eventHub.$on('update:selected', function (name) {
+    this.eventHub.$on('update:selected', function (name, width) {
       if (name === _this.name) {
         _this.active = true;
       } else {
@@ -12778,7 +12805,11 @@ var _default = {
   },
   methods: {
     itemClick: function itemClick() {
-      this.eventHub.$emit('update:selected', this.name);
+      var _this$$el$getBounding = this.$el.getBoundingClientRect(),
+          width = _this$$el$getBounding.width,
+          left = _this$$el$getBounding.left;
+
+      this.eventHub.$emit('update:selected', this.name, width, left);
     }
   }
 };
@@ -13153,7 +13184,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57684" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58983" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
