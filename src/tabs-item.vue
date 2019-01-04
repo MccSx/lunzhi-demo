@@ -1,5 +1,5 @@
 <template>
-    <div class="tabs-item" @click="itemClick" :class="active ? 'active' : ''">
+    <div class="tabs-item" @click="itemClick" :class="[active ? 'active' : '', disabled ? 'dis' : '']">
         <slot></slot>
     </div>
 </template>
@@ -21,6 +21,10 @@ export default {
         name: {
             type: String,
             required: true
+        },
+        disabled: {
+            type: Boolean,
+            default: false
         }
     },
     created() {
@@ -34,6 +38,7 @@ export default {
     },
     methods: {
         itemClick() {
+            if (this.disabled) return
             let {width, left} = this.$el.getBoundingClientRect()
             this.eventHub.$emit('update:selected', this.name, width, left)
         }
@@ -48,6 +53,9 @@ export default {
     line-height: 40px;
     &.active{
         color: #409EFF;
+    }
+    &.dis{
+        color: #ccc;
     }
 }
 </style>

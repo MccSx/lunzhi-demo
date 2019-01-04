@@ -975,3 +975,6 @@
 .tabs-item.active[data-v-7b5145] {
   color: #409EFF;
 }
+.tabs-item.dis[data-v-7b5145] {
+  color: #ccc;
+}

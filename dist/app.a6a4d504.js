@@ -12768,6 +12768,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -12782,7 +12785,7 @@ var _default = {
       active: false
     };
   },
-  props: {
+  props: _defineProperty({
     disabled: {
       type: Boolean,
       default: false
@@ -12791,7 +12794,10 @@ var _default = {
       type: String,
       required: true
     }
-  },
+  }, "disabled", {
+    type: Boolean,
+    default: false
+  }),
   created: function created() {
     var _this = this;
 
@@ -12805,6 +12811,8 @@ var _default = {
   },
   methods: {
     itemClick: function itemClick() {
+      if (this.disabled) return;
+
       var _this$$el$getBounding = this.$el.getBoundingClientRect(),
           width = _this$$el$getBounding.width,
           left = _this$$el$getBounding.left;
@@ -12830,7 +12838,7 @@ exports.default = _default;
     "div",
     {
       staticClass: "tabs-item",
-      class: _vm.active ? "active" : "",
+      class: [_vm.active ? "active" : "", _vm.disabled ? "dis" : ""],
       on: { click: _vm.itemClick }
     },
     [_vm._t("default")],
@@ -13184,7 +13192,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58983" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64776" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
