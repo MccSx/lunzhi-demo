@@ -1,5 +1,5 @@
 <template>
-    <div class="tabs-item" @click="itemClick" :class="[active ? 'active' : '', disabled ? 'dis' : '']">
+    <div class="tabs-item" @click="itemClick" :class="[{active: this.active}, {dis: this.disabled}]">
         <slot></slot>
     </div>
 </template>

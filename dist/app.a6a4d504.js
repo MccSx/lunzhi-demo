@@ -12838,7 +12838,7 @@ exports.default = _default;
     "div",
     {
       staticClass: "tabs-item",
-      class: [_vm.active ? "active" : "", _vm.disabled ? "dis" : ""],
+      class: [{ active: this.active }, { dis: this.disabled }],
       on: { click: _vm.itemClick }
     },
     [_vm._t("default")],
