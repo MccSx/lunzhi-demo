@@ -16,7 +16,7 @@ Vue.config.productionTip = false
 Vue.config.devtools = false
 
 describe('Tabs', () => {
-    it('存在.', () => {
+    it('存在', () => {
         expect(Tabs).to.be.ok
     })
     it('接受 selected 熟悉', (done) => {
