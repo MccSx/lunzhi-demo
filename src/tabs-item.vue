@@ -32,7 +32,7 @@ export default {
         }
     },
     created() {
-        this.eventHub.$on('update:selected', (name, width) => {
+        this.eventHub && this.eventHub.$on('update:selected', (name, width) => {
             if (name === this.name) {
                 this.active = true
             } else {

@@ -12777,6 +12777,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 var _default = {
   name: 'x_tabs_item',
   inject: ['eventHub'],
@@ -12801,7 +12805,7 @@ var _default = {
   created: function created() {
     var _this = this;
 
-    this.eventHub.$on('update:selected', function (name, width) {
+    this.eventHub && this.eventHub.$on('update:selected', function (name, width) {
       if (name === _this.name) {
         _this.active = true;
       } else {
@@ -12839,6 +12843,7 @@ exports.default = _default;
     {
       staticClass: "tabs-item",
       class: [{ active: this.active }, { dis: this.disabled }],
+      attrs: { "data-name": _vm.name },
       on: { click: _vm.itemClick }
     },
     [_vm._t("default")],
@@ -13192,7 +13197,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64776" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53357" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
