@@ -13064,8 +13064,15 @@ exports.default = void 0;
 //
 //
 //
+//
+//
 var _default = {
-  name: 'x_popover'
+  name: 'x_popover',
+  data: function data() {
+    return {
+      showContent: false
+    };
+  }
 };
 exports.default = _default;
         var $ce2f46 = exports.default || module.exports;
@@ -13082,8 +13089,34 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "popover" },
-    [_vm._t("content"), _vm._v(" "), _vm._t("default")],
+    {
+      staticClass: "popover",
+      on: {
+        click: function($event) {
+          _vm.showContent = !_vm.showContent
+        }
+      }
+    },
+    [
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.showContent,
+              expression: "showContent"
+            }
+          ],
+          staticClass: "content-wrapper"
+        },
+        [_vm._t("content")],
+        2
+      ),
+      _vm._v(" "),
+      _vm._t("default")
+    ],
     2
   )
 }
