@@ -1,6 +1,6 @@
 <template>
-    <div class="popover" @click="closePopover">
-        <div class="content-wrapper" v-show="showContent">
+    <div class="popover" @click.stop="closePopover">
+        <div class="content-wrapper" v-show="showContent" @click.stop>
             <slot name="content"></slot>            
         </div>
         <slot></slot>

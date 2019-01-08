@@ -13107,7 +13107,15 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "popover", on: { click: _vm.closePopover } },
+    {
+      staticClass: "popover",
+      on: {
+        click: function($event) {
+          $event.stopPropagation()
+          return _vm.closePopover($event)
+        }
+      }
+    },
     [
       _c(
         "div",
@@ -13120,7 +13128,12 @@ exports.default = _default;
               expression: "showContent"
             }
           ],
-          staticClass: "content-wrapper"
+          staticClass: "content-wrapper",
+          on: {
+            click: function($event) {
+              $event.stopPropagation()
+            }
+          }
         },
         [_vm._t("content")],
         2
