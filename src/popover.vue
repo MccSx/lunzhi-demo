@@ -1,5 +1,5 @@
 <template>
-    <div class="popover" @click="showContent = !showContent">
+    <div class="popover" @click="closePopover">
         <div class="content-wrapper" v-show="showContent">
             <slot name="content"></slot>            
         </div>
@@ -14,7 +14,21 @@ export default {
         return {
             showContent: false
         }
-    }
+    },
+    methods: {
+        closePopover() {
+            this.showContent = !this.showContent
+            if (this.showContent === true) {
+                this.$nextTick(() => {
+                    let documentClose = () => {
+                        this.showContent = false
+                        document.removeEventListener('click', documentClose)
+                    }
+                    document.addEventListener('click', documentClose)
+                })
+            }
+        }
+    },
 }
 </script>
 

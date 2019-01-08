@@ -13072,6 +13072,24 @@ var _default = {
     return {
       showContent: false
     };
+  },
+  methods: {
+    closePopover: function closePopover() {
+      var _this = this;
+
+      this.showContent = !this.showContent;
+
+      if (this.showContent === true) {
+        this.$nextTick(function () {
+          var documentClose = function documentClose() {
+            _this.showContent = false;
+            document.removeEventListener('click', documentClose);
+          };
+
+          document.addEventListener('click', documentClose);
+        });
+      }
+    }
   }
 };
 exports.default = _default;
@@ -13089,14 +13107,7 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticClass: "popover",
-      on: {
-        click: function($event) {
-          _vm.showContent = !_vm.showContent
-        }
-      }
-    },
+    { staticClass: "popover", on: { click: _vm.closePopover } },
     [
       _c(
         "div",
