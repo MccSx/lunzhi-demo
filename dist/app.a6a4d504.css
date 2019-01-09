@@ -983,9 +983,8 @@
   vertical-align: top;
   position: relative;
 }
-.popover .content-wrapper[data-v-ce2f46] {
+.content-wrapper[data-v-ce2f46] {
   position: absolute;
-  bottom: 100%;
-  left: 0;
   z-index: 999;
+  border: 1px solid green;
 }

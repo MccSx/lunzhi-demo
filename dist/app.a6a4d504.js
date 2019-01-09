@@ -13066,6 +13066,8 @@ exports.default = void 0;
 //
 //
 //
+//
+//
 var _default = {
   name: 'x_popover',
   data: function data() {
@@ -13081,6 +13083,17 @@ var _default = {
 
       if (this.showContent === true) {
         this.$nextTick(function () {
+          document.body.appendChild(_this.$refs.contentWrapper);
+
+          var _this$$refs$triggerWr = _this.$refs.triggerWrapper.getBoundingClientRect(),
+              width = _this$$refs$triggerWr.width,
+              height = _this$$refs$triggerWr.height,
+              top = _this$$refs$triggerWr.top,
+              left = _this$$refs$triggerWr.left;
+
+          _this.$refs.contentWrapper.style.left = left + window.scrollX + 'px';
+          _this.$refs.contentWrapper.style.top = top + window.scrollY - height + 'px';
+
           var documentClose = function documentClose() {
             _this.showContent = false;
             document.removeEventListener('click', documentClose);
@@ -13128,6 +13141,7 @@ exports.default = _default;
               expression: "showContent"
             }
           ],
+          ref: "contentWrapper",
           staticClass: "content-wrapper",
           on: {
             click: function($event) {
@@ -13139,9 +13153,8 @@ exports.default = _default;
         2
       ),
       _vm._v(" "),
-      _vm._t("default")
-    ],
-    2
+      _c("span", { ref: "triggerWrapper" }, [_vm._t("default")], 2)
+    ]
   )
 }
 var staticRenderFns = []
@@ -13328,7 +13341,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55805" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65268" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
