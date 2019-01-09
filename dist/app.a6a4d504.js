@@ -13076,35 +13076,46 @@ var _default = {
     };
   },
   methods: {
-    closePopover: function closePopover(e) {
+    positionContent: function positionContent() {
+      document.body.appendChild(this.$refs.contentWrapper);
+
+      var _this$$refs$triggerWr = this.$refs.triggerWrapper.getBoundingClientRect(),
+          width = _this$$refs$triggerWr.width,
+          height = _this$$refs$triggerWr.height,
+          top = _this$$refs$triggerWr.top,
+          left = _this$$refs$triggerWr.left;
+
+      this.$refs.contentWrapper.style.left = left + window.scrollX + 'px';
+      this.$refs.contentWrapper.style.top = top + window.scrollY - height + 'px';
+    },
+    documentClose: function documentClose(e) {
+      if (this.$refs.popover === e.target || this.$refs.popover.contains(e.target)) {
+        return;
+      }
+
+      this.close();
+    },
+    close: function close() {
+      this.showContent = false;
+      document.removeEventListener('click', this.documentClose);
+    },
+    open: function open() {
       var _this = this;
 
+      this.showContent = true;
+      this.$nextTick(function () {
+        _this.positionContent();
+
+        document.addEventListener('click', _this.documentClose);
+      });
+    },
+    closePopover: function closePopover(e) {
       if (this.$refs.triggerWrapper.contains(e.target)) {
-        this.showContent = !this.showContent;
-
+        // this.showContent = !this.showContent
         if (this.showContent === true) {
-          this.$nextTick(function () {
-            document.body.appendChild(_this.$refs.contentWrapper);
-
-            var _this$$refs$triggerWr = _this.$refs.triggerWrapper.getBoundingClientRect(),
-                width = _this$$refs$triggerWr.width,
-                height = _this$$refs$triggerWr.height,
-                top = _this$$refs$triggerWr.top,
-                left = _this$$refs$triggerWr.left;
-
-            _this.$refs.contentWrapper.style.left = left + window.scrollX + 'px';
-            _this.$refs.contentWrapper.style.top = top + window.scrollY - height + 'px';
-
-            var documentClose = function documentClose(e) {
-              if (!_this.$refs.contentWrapper.contains(e.target)) {
-                _this.showContent = false;
-              }
-
-              document.removeEventListener('click', documentClose);
-            };
-
-            document.addEventListener('click', documentClose);
-          });
+          this.close();
+        } else {
+          this.open();
         }
       }
     }
@@ -13125,7 +13136,7 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "popover", on: { click: _vm.closePopover } },
+    { ref: "popover", staticClass: "popover", on: { click: _vm.closePopover } },
     [
       _c(
         "div",
