@@ -13076,31 +13076,36 @@ var _default = {
     };
   },
   methods: {
-    closePopover: function closePopover() {
+    closePopover: function closePopover(e) {
       var _this = this;
 
-      this.showContent = !this.showContent;
+      if (this.$refs.triggerWrapper.contains(e.target)) {
+        this.showContent = !this.showContent;
 
-      if (this.showContent === true) {
-        this.$nextTick(function () {
-          document.body.appendChild(_this.$refs.contentWrapper);
+        if (this.showContent === true) {
+          this.$nextTick(function () {
+            document.body.appendChild(_this.$refs.contentWrapper);
 
-          var _this$$refs$triggerWr = _this.$refs.triggerWrapper.getBoundingClientRect(),
-              width = _this$$refs$triggerWr.width,
-              height = _this$$refs$triggerWr.height,
-              top = _this$$refs$triggerWr.top,
-              left = _this$$refs$triggerWr.left;
+            var _this$$refs$triggerWr = _this.$refs.triggerWrapper.getBoundingClientRect(),
+                width = _this$$refs$triggerWr.width,
+                height = _this$$refs$triggerWr.height,
+                top = _this$$refs$triggerWr.top,
+                left = _this$$refs$triggerWr.left;
 
-          _this.$refs.contentWrapper.style.left = left + window.scrollX + 'px';
-          _this.$refs.contentWrapper.style.top = top + window.scrollY - height + 'px';
+            _this.$refs.contentWrapper.style.left = left + window.scrollX + 'px';
+            _this.$refs.contentWrapper.style.top = top + window.scrollY - height + 'px';
 
-          var documentClose = function documentClose() {
-            _this.showContent = false;
-            document.removeEventListener('click', documentClose);
-          };
+            var documentClose = function documentClose(e) {
+              if (!_this.$refs.contentWrapper.contains(e.target)) {
+                _this.showContent = false;
+              }
 
-          document.addEventListener('click', documentClose);
-        });
+              document.removeEventListener('click', documentClose);
+            };
+
+            document.addEventListener('click', documentClose);
+          });
+        }
       }
     }
   }
@@ -13120,15 +13125,7 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticClass: "popover",
-      on: {
-        click: function($event) {
-          $event.stopPropagation()
-          return _vm.closePopover($event)
-        }
-      }
-    },
+    { staticClass: "popover", on: { click: _vm.closePopover } },
     [
       _c(
         "div",
@@ -13142,12 +13139,7 @@ exports.default = _default;
             }
           ],
           ref: "contentWrapper",
-          staticClass: "content-wrapper",
-          on: {
-            click: function($event) {
-              $event.stopPropagation()
-            }
-          }
+          staticClass: "content-wrapper"
         },
         [_vm._t("content")],
         2
