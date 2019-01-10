@@ -986,5 +986,34 @@
 .content-wrapper[data-v-ce2f46] {
   position: absolute;
   z-index: 999;
-  border: 1px solid green;
+  border: 1px solid #999;
+  transform: translateY(-100%);
+  border-radius: 6px;
+  padding: 10px;
+}
+.content-wrapper[data-v-ce2f46]::before {
+  content: "";
+  width: 0;
+  height: 0;
+  display: block;
+  position: absolute;
+  border: 5px solid #999;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  top: 100%;
+  left: 10%;
+}
+.content-wrapper[data-v-ce2f46]::after {
+  content: "";
+  width: 0;
+  height: 0;
+  display: block;
+  position: absolute;
+  border: 5px solid #fff;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  top: calc(100% - 2px);
+  left: 10%;
 }

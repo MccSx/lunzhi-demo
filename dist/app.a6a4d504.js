@@ -13086,7 +13086,7 @@ var _default = {
           left = _this$$refs$triggerWr.left;
 
       this.$refs.contentWrapper.style.left = left + window.scrollX + 'px';
-      this.$refs.contentWrapper.style.top = top + window.scrollY - height + 'px';
+      this.$refs.contentWrapper.style.top = top + window.scrollY - 5 + 'px';
     },
     documentClose: function documentClose(e) {
       if (this.$refs.popover === e.target || this.$refs.popover.contains(e.target)) {
@@ -13156,7 +13156,12 @@ exports.default = _default;
         2
       ),
       _vm._v(" "),
-      _c("span", { ref: "triggerWrapper" }, [_vm._t("default")], 2)
+      _c(
+        "span",
+        { ref: "triggerWrapper", staticStyle: { display: "inline-block" } },
+        [_vm._t("default")],
+        2
+      )
     ]
   )
 }
@@ -13344,7 +13349,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65268" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55716" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
