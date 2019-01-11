@@ -28,6 +28,9 @@ export default {
             if (this.$refs.popover === e.target || this.$refs.popover.contains(e.target)) {
                 return
             }
+            if (this.$refs.contentWrapper === e.target || this.$refs.contentWrapper.contains(e.target)) {
+                return
+            }
             this.close()
         },
         close() {
@@ -68,8 +71,11 @@ export default {
     transform: translateY(-100%);
     border-radius: 6px;
     padding: 10px;
-    box-shadow: 0 0 4px #999;
+    // box-shadow: 0 0 4px #999;
+    filter: drop-shadow(0 1px 1px #999);
+    background: #fff;
     max-width: 20em;
+    word-break: break-all;
     &::before,&::after{
         content: '';
         width: 0;

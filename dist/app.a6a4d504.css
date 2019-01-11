@@ -990,8 +990,10 @@
   transform: translateY(-100%);
   border-radius: 6px;
   padding: 10px;
-  box-shadow: 0 0 4px #999;
+  filter: drop-shadow(0 1px 1px #999);
+  background: #fff;
   max-width: 20em;
+  word-break: break-all;
 }
 .content-wrapper[data-v-ce2f46]::before, .content-wrapper[data-v-ce2f46]::after {
   content: "";
