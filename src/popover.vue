@@ -68,31 +68,25 @@ export default {
     transform: translateY(-100%);
     border-radius: 6px;
     padding: 10px;
-    &::before{
+    box-shadow: 0 0 4px #999;
+    max-width: 20em;
+    &::before,&::after{
         content: '';
         width: 0;
         height: 0;
         display: block;
         position: absolute;
-        border: 5px solid #999;
-        border-left-color: transparent;
-        border-right-color: transparent;
-        border-bottom-color: transparent;
-        top: 100%;
         left: 10%;
     }
+    &::before{
+        border: 5px solid transparent;
+        border-top-color: #999;
+        top: 100%;
+    }
     &::after{
-        content: '';
-        width: 0;
-        height: 0;
-        display: block;
-        position: absolute;
-        border: 5px solid #fff;
-        border-left-color: transparent;
-        border-right-color: transparent;
-        border-bottom-color: transparent;
+        border: 5px solid transparent;
+        border-top-color: #fff;
         top: calc(100% - 2px);
-        left: 10%;
     }
 }
 </style>
