@@ -1,5 +1,5 @@
 <template>
-    <div class="popover" @click="closePopover" ref="popover">
+    <div class="popover" ref="popover">
         <div ref="contentWrapper" class="content-wrapper" v-show="showContent"
             :class="{[`position-${position}`]:true}"
         >
@@ -22,9 +22,25 @@ export default {
     props: {
         position: {
             type: String,
+            default: 'top',
             validator(value) {
                 return ['top','bottom','left','right'].indexOf(value) !== -1
             }
+        },
+        eventMode: {
+            type: String,
+            default: 'click',
+            validator(value) {
+                return ['click','hover'].indexOf(value) !== -1
+            }
+        }
+    },
+    mounted() {
+        if(this.eventMode === 'click') {
+            this.$refs.popover.addEventListener('click', this.closePopover)
+        } else {
+            this.$refs.popover.addEventListener('mouseenter', this.open)
+            this.$refs.popover.addEventListener('mouseleave', this.close)
         }
     },
     methods: {

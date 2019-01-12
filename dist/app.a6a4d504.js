@@ -13080,9 +13080,25 @@ var _default = {
   props: {
     position: {
       type: String,
+      default: 'top',
       validator: function validator(value) {
         return ['top', 'bottom', 'left', 'right'].indexOf(value) !== -1;
       }
+    },
+    eventMode: {
+      type: String,
+      default: 'click',
+      validator: function validator(value) {
+        return ['click', 'hover'].indexOf(value) !== -1;
+      }
+    }
+  },
+  mounted: function mounted() {
+    if (this.eventMode === 'click') {
+      this.$refs.popover.addEventListener('click', this.closePopover);
+    } else {
+      this.$refs.popover.addEventListener('mouseenter', this.open);
+      this.$refs.popover.addEventListener('mouseleave', this.close);
     }
   },
   methods: {
@@ -13172,37 +13188,33 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { ref: "popover", staticClass: "popover", on: { click: _vm.closePopover } },
-    [
-      _c(
-        "div",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.showContent,
-              expression: "showContent"
-            }
-          ],
-          ref: "contentWrapper",
-          staticClass: "content-wrapper",
-          class: ((_obj = {}), (_obj["position-" + _vm.position] = true), _obj)
-        },
-        [_vm._t("content")],
-        2
-      ),
-      _vm._v(" "),
-      _c(
-        "span",
-        { ref: "triggerWrapper", staticStyle: { display: "inline-block" } },
-        [_vm._t("default")],
-        2
-      )
-    ]
-  )
+  return _c("div", { ref: "popover", staticClass: "popover" }, [
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.showContent,
+            expression: "showContent"
+          }
+        ],
+        ref: "contentWrapper",
+        staticClass: "content-wrapper",
+        class: ((_obj = {}), (_obj["position-" + _vm.position] = true), _obj)
+      },
+      [_vm._t("content")],
+      2
+    ),
+    _vm._v(" "),
+    _c(
+      "span",
+      { ref: "triggerWrapper", staticStyle: { display: "inline-block" } },
+      [_vm._t("default")],
+      2
+    )
+  ])
   var _obj
 }
 var staticRenderFns = []
