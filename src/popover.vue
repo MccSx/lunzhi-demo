@@ -29,23 +29,18 @@ export default {
     },
     methods: {
         positionContent() {
-            let {contentWrapper, triggerWrapper} = this.$refs
+            const {contentWrapper, triggerWrapper} = this.$refs
             document.body.appendChild(contentWrapper)
-            let {width, height, top, left} = triggerWrapper.getBoundingClientRect()
-            let {height: height2} = contentWrapper.getBoundingClientRect()
-            if (this.position === 'top') {
-                contentWrapper.style.left = left + window.scrollX + 'px'
-                contentWrapper.style.top = top + window.scrollY - 5 + 'px'
-            } else if (this.position === 'bottom') {
-                contentWrapper.style.left = left + window.scrollX + 'px'
-                contentWrapper.style.top = top + window.scrollY + height + 5 + 'px'
-            } else if (this.position === 'left') {
-                contentWrapper.style.left = left + window.scrollX - 5 + 'px'
-                contentWrapper.style.top = top + window.scrollY + (height - height2)/2 + 'px'
-            } else if (this.position === 'right') {
-                contentWrapper.style.left = left + window.scrollX + width + 5 + 'px'
-                contentWrapper.style.top = top + window.scrollY + (height - height2)/2 + 'px'
+            const {width, height, top, left} = triggerWrapper.getBoundingClientRect()
+            const {height: height2} = contentWrapper.getBoundingClientRect()
+            let positions = {
+                top: {left: left + window.scrollX, top: top + window.scrollY - 5},
+                bottom: {left: left + window.scrollX, top: top + window.scrollY + height + 5},
+                left: {left: left + window.scrollX - 5, top: top + window.scrollY + (height - height2)/2},
+                right: {left: left + window.scrollX + width + 5, top: top + window.scrollY + (height - height2)/2}
             }
+            contentWrapper.style.left = positions[this.position].left + 'px'
+            contentWrapper.style.top = positions[this.position].top + 'px'
         },
         documentClose(e) {
             if (this.$refs.popover === e.target || this.$refs.popover.contains(e.target)) {

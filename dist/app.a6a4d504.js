@@ -13101,19 +13101,26 @@ var _default = {
       var _contentWrapper$getBo = contentWrapper.getBoundingClientRect(),
           height2 = _contentWrapper$getBo.height;
 
-      if (this.position === 'top') {
-        contentWrapper.style.left = left + window.scrollX + 'px';
-        contentWrapper.style.top = top + window.scrollY - 5 + 'px';
-      } else if (this.position === 'bottom') {
-        contentWrapper.style.left = left + window.scrollX + 'px';
-        contentWrapper.style.top = top + window.scrollY + height + 5 + 'px';
-      } else if (this.position === 'left') {
-        contentWrapper.style.left = left + window.scrollX - 5 + 'px';
-        contentWrapper.style.top = top + window.scrollY + (height - height2) / 2 + 'px';
-      } else if (this.position === 'right') {
-        contentWrapper.style.left = left + window.scrollX + width + 5 + 'px';
-        contentWrapper.style.top = top + window.scrollY + (height - height2) / 2 + 'px';
-      }
+      var positions = {
+        top: {
+          left: left + window.scrollX,
+          top: top + window.scrollY - 5
+        },
+        bottom: {
+          left: left + window.scrollX,
+          top: top + window.scrollY + height + 5
+        },
+        left: {
+          left: left + window.scrollX - 5,
+          top: top + window.scrollY + (height - height2) / 2
+        },
+        right: {
+          left: left + window.scrollX + width + 5,
+          top: top + window.scrollY + (height - height2) / 2
+        }
+      };
+      contentWrapper.style.left = positions[this.position].left + 'px';
+      contentWrapper.style.top = positions[this.position].top + 'px';
     },
     documentClose: function documentClose(e) {
       if (this.$refs.popover === e.target || this.$refs.popover.contains(e.target)) {
