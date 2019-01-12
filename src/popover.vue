@@ -32,12 +32,19 @@ export default {
             let {contentWrapper, triggerWrapper} = this.$refs
             document.body.appendChild(contentWrapper)
             let {width, height, top, left} = triggerWrapper.getBoundingClientRect()
+            let {height: height2} = contentWrapper.getBoundingClientRect()
             if (this.position === 'top') {
                 contentWrapper.style.left = left + window.scrollX + 'px'
                 contentWrapper.style.top = top + window.scrollY - 5 + 'px'
             } else if (this.position === 'bottom') {
                 contentWrapper.style.left = left + window.scrollX + 'px'
                 contentWrapper.style.top = top + window.scrollY + height + 5 + 'px'
+            } else if (this.position === 'left') {
+                contentWrapper.style.left = left + window.scrollX - 5 + 'px'
+                contentWrapper.style.top = top + window.scrollY + (height - height2)/2 + 'px'
+            } else if (this.position === 'right') {
+                contentWrapper.style.left = left + window.scrollX + width + 5 + 'px'
+                contentWrapper.style.top = top + window.scrollY + (height - height2)/2 + 'px'
             }
         },
         documentClose(e) {
@@ -97,6 +104,7 @@ export default {
         height: 0;
         display: block;
         position: absolute;
+        border: 5px solid transparent;
     }
 }
 .content-wrapper.position-top{
@@ -105,12 +113,10 @@ export default {
         left: 10%;
     }
     &::before{
-        border: 5px solid transparent;
         border-top-color: #999;
         top: 100%;
     }
     &::after{
-        border: 5px solid transparent;
         border-top-color: #fff;
         top: calc(100% - 2px);
     }
@@ -120,14 +126,41 @@ export default {
         left: 10%;
     }
     &::before{
-        border: 5px solid transparent;
         border-bottom-color: #999;
         top: -10px;
     }
     &::after{
-        border: 5px solid transparent;
         border-bottom-color: #fff;
-        top: -7px;
+        top: -8px;
+    }
+}
+.content-wrapper.position-left{
+    transform: translateX(-100%);
+    &::before,&::after{
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    &::before{
+        border-left-color: #999;
+        left: 100%;
+    }
+    &::after{
+        border-left-color: #fff;
+        left: calc(100% - 2px);
+    }
+}
+.content-wrapper.position-right{
+    &::before,&::after{
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    &::before{
+        border-right-color: #999;
+        left: -10px;
+    }
+    &::after{
+        border-right-color: #fff;
+        left: -8px;
     }
 }
 </style>

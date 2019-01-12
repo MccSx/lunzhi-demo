@@ -13098,12 +13098,21 @@ var _default = {
           top = _triggerWrapper$getBo.top,
           left = _triggerWrapper$getBo.left;
 
+      var _contentWrapper$getBo = contentWrapper.getBoundingClientRect(),
+          height2 = _contentWrapper$getBo.height;
+
       if (this.position === 'top') {
         contentWrapper.style.left = left + window.scrollX + 'px';
         contentWrapper.style.top = top + window.scrollY - 5 + 'px';
       } else if (this.position === 'bottom') {
         contentWrapper.style.left = left + window.scrollX + 'px';
         contentWrapper.style.top = top + window.scrollY + height + 5 + 'px';
+      } else if (this.position === 'left') {
+        contentWrapper.style.left = left + window.scrollX - 5 + 'px';
+        contentWrapper.style.top = top + window.scrollY + (height - height2) / 2 + 'px';
+      } else if (this.position === 'right') {
+        contentWrapper.style.left = left + window.scrollX + width + 5 + 'px';
+        contentWrapper.style.top = top + window.scrollY + (height - height2) / 2 + 'px';
       }
     },
     documentClose: function documentClose(e) {
