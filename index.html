@@ -116,7 +116,13 @@
             </x-tabs>
         </div>
         <div class="box" style="padding: 50px;">
-            <x-popover>
+            <x-popover :position=" 'top' ">
+                <template slot="content">
+                    <div>popover内容</div>
+                </template>
+                <x-button>点击</x-button>
+            </x-popover>
+            <x-popover :position=" 'bottom' ">
                 <template slot="content">
                     <div>popover内容</div>
                 </template>

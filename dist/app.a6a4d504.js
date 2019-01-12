@@ -13068,6 +13068,8 @@ exports.default = void 0;
 //
 //
 //
+//
+//
 var _default = {
   name: 'x_popover',
   data: function data() {
@@ -13075,18 +13077,34 @@ var _default = {
       showContent: false
     };
   },
+  props: {
+    position: {
+      type: String,
+      validator: function validator(value) {
+        return ['top', 'bottom', 'left', 'right'].indexOf(value) !== -1;
+      }
+    }
+  },
   methods: {
     positionContent: function positionContent() {
-      document.body.appendChild(this.$refs.contentWrapper);
+      var _this$$refs = this.$refs,
+          contentWrapper = _this$$refs.contentWrapper,
+          triggerWrapper = _this$$refs.triggerWrapper;
+      document.body.appendChild(contentWrapper);
 
-      var _this$$refs$triggerWr = this.$refs.triggerWrapper.getBoundingClientRect(),
-          width = _this$$refs$triggerWr.width,
-          height = _this$$refs$triggerWr.height,
-          top = _this$$refs$triggerWr.top,
-          left = _this$$refs$triggerWr.left;
+      var _triggerWrapper$getBo = triggerWrapper.getBoundingClientRect(),
+          width = _triggerWrapper$getBo.width,
+          height = _triggerWrapper$getBo.height,
+          top = _triggerWrapper$getBo.top,
+          left = _triggerWrapper$getBo.left;
 
-      this.$refs.contentWrapper.style.left = left + window.scrollX + 'px';
-      this.$refs.contentWrapper.style.top = top + window.scrollY - 5 + 'px';
+      if (this.position === 'top') {
+        contentWrapper.style.left = left + window.scrollX + 'px';
+        contentWrapper.style.top = top + window.scrollY - 5 + 'px';
+      } else if (this.position === 'bottom') {
+        contentWrapper.style.left = left + window.scrollX + 'px';
+        contentWrapper.style.top = top + window.scrollY + height + 5 + 'px';
+      }
     },
     documentClose: function documentClose(e) {
       if (this.$refs.popover === e.target || this.$refs.popover.contains(e.target)) {
@@ -13154,7 +13172,8 @@ exports.default = _default;
             }
           ],
           ref: "contentWrapper",
-          staticClass: "content-wrapper"
+          staticClass: "content-wrapper",
+          class: ((_obj = {}), (_obj["position-" + _vm.position] = true), _obj)
         },
         [_vm._t("content")],
         2
@@ -13168,6 +13187,7 @@ exports.default = _default;
       )
     ]
   )
+  var _obj
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -13353,7 +13373,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52484" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60112" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

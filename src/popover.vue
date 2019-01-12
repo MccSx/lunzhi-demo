@@ -1,6 +1,8 @@
 <template>
     <div class="popover" @click="closePopover" ref="popover">
-        <div ref="contentWrapper" class="content-wrapper" v-show="showContent">
+        <div ref="contentWrapper" class="content-wrapper" v-show="showContent"
+            :class="{[`position-${position}`]:true}"
+        >
             <slot name="content"></slot>            
         </div>
         <span ref="triggerWrapper" style="display:inline-block;">
@@ -17,12 +19,26 @@ export default {
             showContent: false
         }
     },
+    props: {
+        position: {
+            type: String,
+            validator(value) {
+                return ['top','bottom','left','right'].indexOf(value) !== -1
+            }
+        }
+    },
     methods: {
         positionContent() {
-            document.body.appendChild(this.$refs.contentWrapper)
-            let {width, height, top, left} = this.$refs.triggerWrapper.getBoundingClientRect()
-            this.$refs.contentWrapper.style.left = left + window.scrollX + 'px'
-            this.$refs.contentWrapper.style.top = top + window.scrollY - 5 + 'px'
+            let {contentWrapper, triggerWrapper} = this.$refs
+            document.body.appendChild(contentWrapper)
+            let {width, height, top, left} = triggerWrapper.getBoundingClientRect()
+            if (this.position === 'top') {
+                contentWrapper.style.left = left + window.scrollX + 'px'
+                contentWrapper.style.top = top + window.scrollY - 5 + 'px'
+            } else if (this.position === 'bottom') {
+                contentWrapper.style.left = left + window.scrollX + 'px'
+                contentWrapper.style.top = top + window.scrollY + height + 5 + 'px'
+            }
         },
         documentClose(e) {
             if (this.$refs.popover === e.target || this.$refs.popover.contains(e.target)) {
@@ -68,7 +84,6 @@ export default {
     position: absolute;
     z-index: 999;
     border: 1px solid #999;
-    transform: translateY(-100%);
     border-radius: 6px;
     padding: 10px;
     // box-shadow: 0 0 4px #999;
@@ -82,6 +97,11 @@ export default {
         height: 0;
         display: block;
         position: absolute;
+    }
+}
+.content-wrapper.position-top{
+    transform: translateY(-100%);
+    &::before,&::after{
         left: 10%;
     }
     &::before{
@@ -93,6 +113,21 @@ export default {
         border: 5px solid transparent;
         border-top-color: #fff;
         top: calc(100% - 2px);
+    }
+}
+.content-wrapper.position-bottom{
+    &::before,&::after{
+        left: 10%;
+    }
+    &::before{
+        border: 5px solid transparent;
+        border-bottom-color: #999;
+        top: -10px;
+    }
+    &::after{
+        border: 5px solid transparent;
+        border-bottom-color: #fff;
+        top: -7px;
     }
 }
 </style>
