@@ -13101,6 +13101,14 @@ var _default = {
       this.$refs.popover.addEventListener('mouseleave', this.close);
     }
   },
+  destroyed: function destroyed() {
+    if (this.eventMode === 'click') {
+      this.$refs.popover.removeEventListener('click', this.closePopover);
+    } else {
+      this.$refs.popover.removeEventListener('mouseenter', this.open);
+      this.$refs.popover.removeEventListener('mouseleave', this.close);
+    }
+  },
   methods: {
     positionContent: function positionContent() {
       var _this$$refs = this.$refs,
