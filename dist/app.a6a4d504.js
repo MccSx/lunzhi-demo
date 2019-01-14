@@ -13094,19 +13094,23 @@ var _default = {
     }
   },
   mounted: function mounted() {
-    if (this.eventMode === 'click') {
-      this.$refs.popover.addEventListener('click', this.closePopover);
-    } else {
-      this.$refs.popover.addEventListener('mouseenter', this.open);
-      this.$refs.popover.addEventListener('mouseleave', this.close);
+    if (this.$refs.popover) {
+      if (this.eventMode === 'click') {
+        this.$refs.popover.addEventListener('click', this.closePopover);
+      } else {
+        this.$refs.popover.addEventListener('mouseenter', this.open);
+        this.$refs.popover.addEventListener('mouseleave', this.close);
+      }
     }
   },
   destroyed: function destroyed() {
-    if (this.eventMode === 'click') {
-      this.$refs.popover.removeEventListener('click', this.closePopover);
-    } else {
-      this.$refs.popover.removeEventListener('mouseenter', this.open);
-      this.$refs.popover.removeEventListener('mouseleave', this.close);
+    if (this.$refs.popover) {
+      if (this.eventMode === 'click') {
+        this.$refs.popover.removeEventListener('click', this.closePopover);
+      } else {
+        this.$refs.popover.removeEventListener('mouseenter', this.open);
+        this.$refs.popover.removeEventListener('mouseleave', this.close);
+      }
     }
   },
   methods: {
@@ -13409,7 +13413,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62572" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56131" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

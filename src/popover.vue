@@ -36,19 +36,23 @@ export default {
         }
     },
     mounted() {
-        if(this.eventMode === 'click') {
-            this.$refs.popover.addEventListener('click', this.closePopover)
-        } else {
-            this.$refs.popover.addEventListener('mouseenter', this.open)
-            this.$refs.popover.addEventListener('mouseleave', this.close)
+        if (this.$refs.popover) {
+            if(this.eventMode === 'click') {
+                this.$refs.popover.addEventListener('click', this.closePopover)
+            } else {
+                this.$refs.popover.addEventListener('mouseenter', this.open)
+                this.$refs.popover.addEventListener('mouseleave', this.close)
+            }
         }
     },
     destroyed() {
-        if(this.eventMode === 'click') {
-            this.$refs.popover.removeEventListener('click', this.closePopover)
-        } else {
-            this.$refs.popover.removeEventListener('mouseenter', this.open)
-            this.$refs.popover.removeEventListener('mouseleave', this.close)
+        if (this.$refs.popover) {
+            if(this.eventMode === 'click') {
+                this.$refs.popover.removeEventListener('click', this.closePopover)
+            } else {
+                this.$refs.popover.removeEventListener('mouseenter', this.open)
+                this.$refs.popover.removeEventListener('mouseleave', this.close)
+            }
         }
     },
     methods: {
@@ -130,6 +134,7 @@ export default {
     transform: translateY(-100%);
     &::before,&::after{
         left: 10%;
+        border-bottom: none;
     }
     &::before{
         border-top-color: #999;
@@ -137,20 +142,21 @@ export default {
     }
     &::after{
         border-top-color: #fff;
-        top: calc(100% - 2px);
+        top: calc(100% - 1px);
     }
 }
 .content-wrapper.position-bottom{
     &::before,&::after{
         left: 10%;
+        border-top: none;
     }
     &::before{
         border-bottom-color: #999;
-        top: -10px;
+        top: -5px;
     }
     &::after{
         border-bottom-color: #fff;
-        top: -8px;
+        top: -4px;
     }
 }
 .content-wrapper.position-left{
@@ -158,6 +164,7 @@ export default {
     &::before,&::after{
         top: 50%;
         transform: translateY(-50%);
+        border-right: none;
     }
     &::before{
         border-left-color: #999;
@@ -165,21 +172,22 @@ export default {
     }
     &::after{
         border-left-color: #fff;
-        left: calc(100% - 2px);
+        left: calc(100% - 1px);
     }
 }
 .content-wrapper.position-right{
     &::before,&::after{
         top: 50%;
         transform: translateY(-50%);
+        border-left: none;
     }
     &::before{
         border-right-color: #999;
-        left: -10px;
+        left: -5px;
     }
     &::after{
         border-right-color: #fff;
-        left: -8px;
+        left: -4px;
     }
 }
 </style>
