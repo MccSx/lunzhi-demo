@@ -117,8 +117,8 @@
         </div>
         <div class="box" style="padding: 50px;">
             <x-popover :position=" 'top' ">
-                <template slot="content">
-                    <div>popover内容</div>
+                <template slot="content" slot-scope="{close}">
+                    <div>popover内容</div><x-button @click="close">关闭</x-button>
                 </template>
                 <x-button>点击</x-button>
             </x-popover>
