@@ -1058,3 +1058,21 @@
   border-right-color: #fff;
   left: -4px;
 }
+.collapse[data-v-506e27] {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.collapse-item .title[data-v-8be866] {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 10px;
+}
+.collapse-item .content[data-v-8be866] {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 10px;
+}
+.collapse-item:last-child .title.open[data-v-8be866] {
+  border-bottom: none;
+}
+.collapse-item:last-child .content.open[data-v-8be866] {
+  border-bottom: none;
+}

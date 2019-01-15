@@ -12,6 +12,7 @@ export default {
 
 <style lang="scss" scoped>
 .collapse{
-    
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 </style>

@@ -13342,6 +13342,8 @@ exports.default = void 0;
 //
 //
 //
+//
+//
 var _default = {
   name: 'x_collapse_item',
   props: {
@@ -13349,6 +13351,11 @@ var _default = {
       type: String,
       required: true
     }
+  },
+  data: function data() {
+    return {
+      isOpen: true
+    };
   }
 };
 exports.default = _default;
@@ -13364,18 +13371,29 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "collapse-item" },
-    [
-      _c("div", { staticClass: "title" }, [
-        _vm._v("\n        " + _vm._s(_vm.title) + "\n    ")
-      ]),
-      _vm._v(" "),
-      _vm._t("default")
-    ],
-    2
-  )
+  return _c("div", { staticClass: "collapse-item" }, [
+    _c("div", { staticClass: "title", class: _vm.isOpen ? "" : "open" }, [
+      _vm._v("\n        " + _vm._s(_vm.title) + "\n    ")
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.isOpen,
+            expression: "isOpen"
+          }
+        ],
+        staticClass: "content",
+        class: _vm.isOpen ? "open" : ""
+      },
+      [_vm._t("default")],
+      2
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
