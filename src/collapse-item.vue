@@ -1,6 +1,6 @@
 <template>
     <div class="collapse-item">
-        <div class="title" :class="isOpen ? '': 'open'">
+        <div class="title" :class="isOpen ? '': 'open'" @click="isOpen = !isOpen">
             {{title}}
         </div>
         <div class="content" v-show="isOpen" :class="isOpen ? 'open' : ''">
@@ -20,7 +20,7 @@ export default {
     },
     data() {
         return {
-            isOpen: true
+            isOpen: false
         }
     }
 }

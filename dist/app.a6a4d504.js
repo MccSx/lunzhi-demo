@@ -13354,7 +13354,7 @@ var _default = {
   },
   data: function data() {
     return {
-      isOpen: true
+      isOpen: false
     };
   }
 };
@@ -13372,9 +13372,19 @@ exports.default = _default;
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "collapse-item" }, [
-    _c("div", { staticClass: "title", class: _vm.isOpen ? "" : "open" }, [
-      _vm._v("\n        " + _vm._s(_vm.title) + "\n    ")
-    ]),
+    _c(
+      "div",
+      {
+        staticClass: "title",
+        class: _vm.isOpen ? "" : "open",
+        on: {
+          click: function($event) {
+            _vm.isOpen = !_vm.isOpen
+          }
+        }
+      },
+      [_vm._v("\n        " + _vm._s(_vm.title) + "\n    ")]
+    ),
     _vm._v(" "),
     _c(
       "div",
@@ -13587,7 +13597,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52611" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60304" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
