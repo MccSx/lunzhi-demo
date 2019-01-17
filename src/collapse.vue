@@ -17,6 +17,10 @@ export default {
         single: {
             type: Boolean,
             default: false
+        },
+        selected: {
+            type: [String, Number],
+            default: ''
         }
     },
     provide() {
@@ -25,6 +29,9 @@ export default {
         }
     },
     mounted() {
+        if (this.selected) {
+            this.eventHub.$emit('defaultSelected', this.selected)
+        }
         if (this.single) {
             this.eventHub.$emit('single', this.single)            
         }

@@ -24,10 +24,16 @@ export default {
         }
     },
     created() {
+        this.eventHub.$on('defaultSelected', (name) => {
+            if (name === this.name) {
+                this.isOpen = true                
+            }
+        })
         this.eventHub.$on('single', (bool) => {
+            this.single = bool
             this.eventHub.$on('select', (name) => {
                 if (name === this.name) {
-                    this.isOpen = true
+                    this.isOpen = !this.isOpen
                 } else {
                     this.isOpen = false
                 }
@@ -42,8 +48,11 @@ export default {
     },
     methods: {
         clickItem() {
-            this.isOpen = !this.isOpen
-            this.eventHub.$emit('select', this.name)
+            if(!this.single) {
+                this.isOpen = !this.isOpen
+            } else {
+                this.eventHub.$emit('select', this.name)
+            }
         }
     },
 }

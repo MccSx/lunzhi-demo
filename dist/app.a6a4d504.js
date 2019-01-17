@@ -13291,6 +13291,10 @@ var _default = {
     single: {
       type: Boolean,
       default: false
+    },
+    selected: {
+      type: [String, Number],
+      default: ''
     }
   },
   provide: function provide() {
@@ -13299,6 +13303,10 @@ var _default = {
     };
   },
   mounted: function mounted() {
+    if (this.selected) {
+      this.eventHub.$emit('defaultSelected', this.selected);
+    }
+
     if (this.single) {
       this.eventHub.$emit('single', this.single);
     }
@@ -13386,10 +13394,17 @@ var _default = {
   created: function created() {
     var _this = this;
 
+    this.eventHub.$on('defaultSelected', function (name) {
+      if (name === _this.name) {
+        _this.isOpen = true;
+      }
+    });
     this.eventHub.$on('single', function (bool) {
+      _this.single = bool;
+
       _this.eventHub.$on('select', function (name) {
         if (name === _this.name) {
-          _this.isOpen = true;
+          _this.isOpen = !_this.isOpen;
         } else {
           _this.isOpen = false;
         }
@@ -13404,8 +13419,11 @@ var _default = {
   },
   methods: {
     clickItem: function clickItem() {
-      this.isOpen = !this.isOpen;
-      this.eventHub.$emit('select', this.name);
+      if (!this.single) {
+        this.isOpen = !this.isOpen;
+      } else {
+        this.eventHub.$emit('select', this.name);
+      }
     }
   }
 };
