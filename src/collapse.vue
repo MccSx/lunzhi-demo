@@ -25,7 +25,9 @@ export default {
         }
     },
     mounted() {
-        this.eventHub.$emit('single', this.single)  
+        if (this.single) {
+            this.eventHub.$emit('single', this.single)            
+        }
     },
 }
 </script>

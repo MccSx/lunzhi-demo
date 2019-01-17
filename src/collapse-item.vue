@@ -25,16 +25,13 @@ export default {
     },
     created() {
         this.eventHub.$on('single', (bool) => {
-            this.single = bool
-        })
-        this.eventHub.$on('select', (name) => {
-            if (this.single) {
+            this.eventHub.$on('select', (name) => {
                 if (name === this.name) {
                     this.isOpen = true
                 } else {
                     this.isOpen = false
                 }
-            }
+            })
         })
     },
     data() {

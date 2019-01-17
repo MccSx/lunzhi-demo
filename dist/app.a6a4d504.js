@@ -13299,7 +13299,9 @@ var _default = {
     };
   },
   mounted: function mounted() {
-    this.eventHub.$emit('single', this.single);
+    if (this.single) {
+      this.eventHub.$emit('single', this.single);
+    }
   }
 };
 exports.default = _default;
@@ -13385,16 +13387,13 @@ var _default = {
     var _this = this;
 
     this.eventHub.$on('single', function (bool) {
-      _this.single = bool;
-    });
-    this.eventHub.$on('select', function (name) {
-      if (_this.single) {
+      _this.eventHub.$on('select', function (name) {
         if (name === _this.name) {
           _this.isOpen = true;
         } else {
           _this.isOpen = false;
         }
-      }
+      });
     });
   },
   data: function data() {
