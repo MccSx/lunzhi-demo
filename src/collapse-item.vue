@@ -1,6 +1,6 @@
 <template>
     <div class="collapse-item">
-        <div class="title" :class="isOpen ? '': 'open'" @click="isOpen = !isOpen">
+        <div class="title" :class="isOpen ? '': 'open'" @click="clickItem">
             {{title}}
         </div>
         <div class="content" v-show="isOpen" :class="isOpen ? 'open' : ''">
@@ -12,17 +12,43 @@
 <script>
 export default {
     name: 'x_collapse_item',
+    inject: ['eventHub'],
     props: {
         title: {
             type: String,
             required: true
+        },
+        name: {
+            type: [String, Number],
+            required: true
         }
+    },
+    created() {
+        this.eventHub.$on('single', (bool) => {
+            this.single = bool
+        })
+        this.eventHub.$on('select', (name) => {
+            if (this.single) {
+                if (name === this.name) {
+                    this.isOpen = true
+                } else {
+                    this.isOpen = false
+                }
+            }
+        })
     },
     data() {
         return {
-            isOpen: false
+            isOpen: false,
+            single: false
         }
-    }
+    },
+    methods: {
+        clickItem() {
+            this.isOpen = !this.isOpen
+            this.eventHub.$emit('select', this.name)
+        }
+    },
 }
 </script>
 

@@ -5,8 +5,28 @@
 </template>
 
 <script>
+import Vue from 'vue'
 export default {
-    name: 'x_collapse'
+    name: 'x_collapse',
+    data() {
+        return {
+            eventHub: new Vue()
+        }
+    },
+    props: {
+        single: {
+            type: Boolean,
+            default: false
+        }
+    },
+    provide() {
+        return {
+            eventHub: this.eventHub
+        }
+    },
+    mounted() {
+        this.eventHub.$emit('single', this.single)  
+    },
 }
 </script>
 

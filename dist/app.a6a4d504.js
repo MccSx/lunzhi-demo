@@ -13269,6 +13269,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+
+var _vue = _interopRequireDefault(require("vue"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 //
 //
 //
@@ -13276,7 +13281,26 @@ exports.default = void 0;
 //
 //
 var _default = {
-  name: 'x_collapse'
+  name: 'x_collapse',
+  data: function data() {
+    return {
+      eventHub: new _vue.default()
+    };
+  },
+  props: {
+    single: {
+      type: Boolean,
+      default: false
+    }
+  },
+  provide: function provide() {
+    return {
+      eventHub: this.eventHub
+    };
+  },
+  mounted: function mounted() {
+    this.eventHub.$emit('single', this.single);
+  }
 };
 exports.default = _default;
         var $506e27 = exports.default || module.exports;
@@ -13326,7 +13350,7 @@ render._withStripped = true
       
       }
     })();
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.common.js"}],"src/collapse-item.vue":[function(require,module,exports) {
+},{"vue":"node_modules/vue/dist/vue.common.js","_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js"}],"src/collapse-item.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -13346,16 +13370,44 @@ exports.default = void 0;
 //
 var _default = {
   name: 'x_collapse_item',
+  inject: ['eventHub'],
   props: {
     title: {
       type: String,
       required: true
+    },
+    name: {
+      type: [String, Number],
+      required: true
     }
+  },
+  created: function created() {
+    var _this = this;
+
+    this.eventHub.$on('single', function (bool) {
+      _this.single = bool;
+    });
+    this.eventHub.$on('select', function (name) {
+      if (_this.single) {
+        if (name === _this.name) {
+          _this.isOpen = true;
+        } else {
+          _this.isOpen = false;
+        }
+      }
+    });
   },
   data: function data() {
     return {
-      isOpen: false
+      isOpen: false,
+      single: false
     };
+  },
+  methods: {
+    clickItem: function clickItem() {
+      this.isOpen = !this.isOpen;
+      this.eventHub.$emit('select', this.name);
+    }
   }
 };
 exports.default = _default;
@@ -13377,11 +13429,7 @@ exports.default = _default;
       {
         staticClass: "title",
         class: _vm.isOpen ? "" : "open",
-        on: {
-          click: function($event) {
-            _vm.isOpen = !_vm.isOpen
-          }
-        }
+        on: { click: _vm.clickItem }
       },
       [_vm._v("\n        " + _vm._s(_vm.title) + "\n    ")]
     ),
@@ -13597,7 +13645,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60304" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62703" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
