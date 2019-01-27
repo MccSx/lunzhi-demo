@@ -24,12 +24,12 @@ export default {
         }
     },
     created() {
-        this.eventHub.$on('defaultSelected', (name) => {
+        this.eventHub && this.eventHub.$on('defaultSelected', (name) => {
             if (name === this.name) {
                 this.isOpen = true                
             }
         })
-        this.eventHub.$on('single', (bool) => {
+        this.eventHub && this.eventHub.$on('single', (bool) => {
             this.single = bool
             this.eventHub.$on('select', (name) => {
                 if (name === this.name) {
